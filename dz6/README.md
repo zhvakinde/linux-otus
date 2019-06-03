@@ -1,8 +1,10 @@
 Домашнее задание
+
 Создать свой RPM пакет (возьмем пакет NGINX и соберем его с поддержкой openssl)
+
 Создать свой репозиторий и разместить там ранее собранный RPM
 
-    Устанавливаются нужные пакеты для работы:
+Устанавливаются нужные пакеты для работы:
 
 yum install -y \
 redhat-lsb-core \
@@ -23,6 +25,8 @@ rpm -i nginx-1.14.1-1.el7_4.ngx.src.rpm
 
 wget https://www.openssl.org/source/latest.tar.gz
 
+tar -xvf latest.tar.gz
+
 Заранее устанавливаются зависимости:
 
 sudo yum-builddep rpmbuild/SPECS/nginx.spec
@@ -40,12 +44,19 @@ rpmbuild -bb rpmbuild/SPECS/nginx.spec
 Все готово для того, чтобы протестировать репозиторий.
 
 Добавим его в /etc/yum.repos.d:
+
 cat >> /etc/yum.repos.d/otus.repo << EOF
+
 [otus]
+
 name=otus-linux
+
 baseurl=http://localhost/repo
+
 gpgcheck=0
+
 enabled=1
+
 EOF
 
 Убедимся что репозиторий подключился и посмотрим что в нем есть:
@@ -53,7 +64,6 @@ EOF
 yum repolist enabled | grep otus
 
  yum list | grep otus
-
 
 устанавливаем NGINX
  yum install nginx -y
