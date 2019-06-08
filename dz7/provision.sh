@@ -30,7 +30,7 @@ systemctl start spawn-fcgi
 cp /usr/lib/systemd/system/httpd.service /etc/systemd/system/httpd@.service
 sed -i '/^EnvironmentFile/ s/$/-%I/' /etc/systemd/system/httpd@.service
 echo "OPTIONS=-f conf/httpd-1.conf" > /etc/sysconfig/httpd-1
-echo "OPTIONS=-f conf/httpd-1.conf" > /etc/sysconfig/httpd-2
+echo "OPTIONS=-f conf/httpd-2.conf" > /etc/sysconfig/httpd-2
 cp /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd-1.conf
 cp /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd-2.conf
 mv /etc/sysconfig/httpd /etc/sysconfig/httpd.backup
