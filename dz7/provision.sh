@@ -27,3 +27,17 @@ systemctl enable spawn-fcgi
 systemctl start spawn-fcgi
 
 #3 задание
+cp /usr/lib/systemd/system/httpd.service /etc/systemd/system/httpd@.service
+sed -i '/^EnvironmentFile/ s/$/-%I/' /etc/systemd/system/httpd@.service
+echo "OPTIONS=-f conf/httpd-first.conf" > /etc/sysconfig/httpd-1
+echo "OPTIONS=-f conf/httpd-second.conf" > /etc/sysconfig/httpd-2
+cp /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd-1.conf
+cp /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd-2.conf
+mv /etc/sysconfig/httpd /etc/sysconfig/httpd.backup
+sed -i 's/Listen 80/Listen 8080/' /etc/httpd/conf/httpd-2.conf
+sed -i '/ServerRoot "\/etc\/httpd"/a PidFile \/var\/run\/httpd-2.pid' /etc/httpd/conf/httpd-2.conf
+
+systemctl disable httpd
+systemctl daemon-reload
+systemctl start httpd@1
+systemctl start httpd@2
