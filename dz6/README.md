@@ -68,4 +68,7 @@ yum repolist enabled | grep otus
 устанавливаем NGINX
  yum install nginx -y
 
-  
+  Дополнительно:
+реализовать доставку через docker: написать dockerfile, собрать image, разместить в docker registry, прислать ссылку и инструкцию.
+
+https://hub.docker.com/r/zhvakinde/nginx
