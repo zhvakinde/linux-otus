@@ -68,4 +68,4 @@ yum repolist enabled | grep otus
 устанавливаем NGINX
  yum install nginx -y
 
-  
+ 
