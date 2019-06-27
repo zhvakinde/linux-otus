@@ -1,1 +1,1 @@
-{"rsync":{"/vagrant":{"type":"rsync","guestpath":"/vagrant","hostpath":"/home/admin/linux-otus/dz6","disabled":false,"__vagrantfile":true,"owner":"vagrant","group":"vagrant"}}}
+{"rsync":{"/vagrant":{"type":"rsync","guestpath":"/vagrant","hostpath":"/root/linux-otus/dz6","disabled":false,"__vagrantfile":true,"owner":"vagrant","group":"vagrant"}}}
