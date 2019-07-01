@@ -7,6 +7,7 @@
 Задание со * (звездочкой)
 * Создайте кастомные образы nginx и php, объедините их в docker-compose. После запуска nginx должен показывать php info. Все собранные образы должны быть в docker hub
 
-1.https://hub.docker.com/r/zhvakinde/dz10_nginx
-2.
-3. Ответ: Собрать ядро в контейнере можно.
+# Решение, ответы
+* https://hub.docker.com/r/zhvakinde/dz10_nginx.
+*
+*  Ответ: Собрать ядро в контейнере можно.
