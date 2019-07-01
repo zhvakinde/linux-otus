@@ -6,4 +6,4 @@ RUN mkdir -p /run/nginx/ \
 COPY nginx.conf /etc/nginx
 COPY index.html /www
 EXPOSE 80
-CMD ["nginx"]
+CMD ["nginx", "-g", "daemon off;"]
