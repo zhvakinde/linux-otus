@@ -11,3 +11,5 @@ yum install -y epel-release
 yum install -y python-pip
 pip install --upgrade pip
 pip install docker-compose
+cd /vagrant/addon
+docker-compose up -d
