@@ -4,7 +4,7 @@ services:
   nginx:
     image: zhvakinde/dz10_addon_nginx:v1
     ports:
-      - 8080:80
+      - 8081:80
     volumes:
       - ./logs:/etc/logs/nginx
       - ./php:/var/www:rw
