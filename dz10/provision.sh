@@ -6,3 +6,6 @@ systemctl enable docker
 systemctl start docker
 docker build /vagrant/ -t zhvakinde/dz10_nginx:v1
 docker run -d -p 8080:80  zhvakinde/dz10_nginx:v1
+# Дополнительное задание
+curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+$ chmod +x /usr/local/bin/docker-compose
