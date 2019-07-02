@@ -11,4 +11,4 @@
 * https://hub.docker.com/r/zhvakinde/dz10_nginx.
 *
 *  Ответ: Собрать ядро в контейнере можно.
-* * https://hub.docker.com/r/zhvakinde/dz10_addon_nginx, https://hub.docker.com/r/zhvakinde/dz10_addon_php
+* https://hub.docker.com/r/zhvakinde/dz10_addon_nginx, https://hub.docker.com/r/zhvakinde/dz10_addon_php
