@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: disable selinux
+    shell: setenforce 0
+
+- hosts: ipaserver
+  become: yes
+  tasks:
+  - name: Set hostname
+    hostname: name=ipaserver.otus.local
+  roles:
+   - freeipa-server
