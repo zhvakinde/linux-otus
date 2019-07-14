@@ -13,5 +13,6 @@
 - name: add client to domain
   ignore_errors: True
   register: result
-  command: ipa-client-install -U --mkhomedir --force-ntpd --domain={{ domain }} --server={{ server }} --realm={{ realm }} --principal={{ admin }} --password={{ password }}
+  command: ipa-client-install  --mkhomedir --server={{ server }} --domain={{ domain }}  --realm={{ realm }} --principal={{ admin }} --password={{ password }} --force-ntpd --unattended
 
+...
