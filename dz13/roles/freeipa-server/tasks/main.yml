@@ -31,4 +31,6 @@
  - name: IPA-Server install
    ignore_errors: True
    register: result
-   shell: ipa-server-install --hostname={{ server }} --domain={{ domain }} --realm={{ realm }} --ds-password={{ dbpassword }} --admin-password={{ password }} --mkhomedir --setup-dns --forwarder=8.8.8.8 --auto-reverse --unattended
+   command: ipa-server-install --hostname={{ server }} --domain={{ domain }} --realm={{ realm }} --ds-password={{ dbpassword }} --admin-password={{ password }} --mkhomedir --setup-dns --forwarder=8.8.8.8 --auto-reverse --unattended
+   notify:
+     - restart freeipa
