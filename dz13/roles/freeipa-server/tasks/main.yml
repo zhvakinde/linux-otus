@@ -1,17 +1,21 @@
 ---
 # - name: Set hostname
-#   hostname: name=.otus.local
+#   hostname: name=ipaserver.otus.local
 
  - name: install epel-release
-   yum: name={{ item }} state=latest 
-   with_items:
-    - epel-release
+   yum: 
+     name: epel-release 
+     state: latest 
 
  - name: install ipa-server
-   yum: name={{ item }} state=latest 
-   with_items:
-    - ipa-server
-    - ipa-server-dns
+   yum:
+     name: ipa-server 
+     state: latest 
+ 
+ - name: install ipa-server-dns
+   yum:
+     name:ipa-server-dns
+     state:latest
 
  - name: Modification /etc/hosts
    copy:
