@@ -1,6 +1,7 @@
 ---
-# - name: Set hostname
-#   hostname: name=ipaserver.otus.local
+ 
+ - name: Set hostname
+   hostname: "ipaserver.otus.local"
 
  - name: install epel-release
    yum: 
