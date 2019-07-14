@@ -3,7 +3,7 @@
   become: yes
   tasks:
   - name: Set hostname
-    hostname: name=ipaserver.otus.local
+    hostname: "ipaserver.otus.local"
   roles:
    - freeipa-server
 
@@ -11,6 +11,6 @@
   become: yes
   tasks:
   - name: Set hostname
-    hostname: name=ipaclient.otus.local
+    hostname: "ipaclient.otus.local"
   roles:
    - freeipa-client
