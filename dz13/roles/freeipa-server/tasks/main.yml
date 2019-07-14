@@ -14,8 +14,8 @@
  
  - name: install ipa-server-dns
    yum:
-     name:ipa-server-dns
-     state:latest
+     name: ipa-server-dns
+     state: latest
 
  - name: Modification /etc/hosts
    copy:
