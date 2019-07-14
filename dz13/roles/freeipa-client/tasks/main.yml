@@ -9,6 +9,11 @@
   yum: 
     name: "ipa-client" 
     state: latest 
+    
+- name: resolv.conf configuring
+  lineinfile:
+    path: /etc/resolv.conf
+    line: "nameserver 192.168.1.101"
 
 - name: add client to domain
   ignore_errors: True
