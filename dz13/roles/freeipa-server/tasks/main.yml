@@ -31,4 +31,4 @@
  - name: IPA-Server install
    ignore_errors: True
    register: result
-   shell: ipa-server-install -U --setup-dns --mkhomedir --hostname={{ server }} --domain={{ domain }} --realm={{ realm }} --ds-password={{ dbpassword }} --admin-password={{ password }} --setup-dns --no-forwarders --no-reverse
+   shell: ipa-server-install --hostname={{ server }} --domain={{ domain }} --realm={{ realm }} --ds-password={{ dbpassword }} --admin-password={{ password }} --mkhomedir --setup-dns --forwarder=8.8.8.8 --auto-reverse --unattended
