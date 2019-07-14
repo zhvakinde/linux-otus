@@ -5,11 +5,11 @@ home = ENV['HOME']
 MACHINES = {
   :freeipa => {
         :box_name => "centos/7",
-        :ip_addr => '192.168.11.101',
+        :ip_addr => '192.168.1.101',
   },
   :client => {
         :box_name => "centos/7",
-        :ip_addr => '192.168.11.102',
+        :ip_addr => '192.168.1.102',
   }
 }
 
@@ -34,5 +34,4 @@ Vagrant.configure("2") do |config|
    SHELL
       end
       end
-end
 end
