@@ -1,5 +1,8 @@
 ---
 
+- name: Set hostname
+  hostname: "ipaclient.otus.local"
+
 - name: Modification /etc/hosts
   copy:
     src: hosts
