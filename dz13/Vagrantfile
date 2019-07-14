@@ -5,11 +5,11 @@ home = ENV['HOME']
 MACHINES = {
   :ipaserver => {
         :box_name => "centos/7",
-        :ip_addr => '192.168.11.101',
+        :ip_addr => '192.168.1.101',
   },
   :ipaclient => {
         :box_name => "centos/7",
-        :ip_addr => '192.168.11.102',
+        :ip_addr => '192.168.1.102',
   }
 }
 
