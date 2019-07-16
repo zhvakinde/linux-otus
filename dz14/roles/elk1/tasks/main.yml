@@ -22,7 +22,7 @@
     state: present
     key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
     
-- name: Install ELK, rsyslog, mariadb
+- name: Install ELK, kibana
   yum:
     name:
       - java-1.8.0-openjdk 
