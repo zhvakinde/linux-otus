@@ -11,7 +11,7 @@ MACHINES = {
   :elk1 => {
         :box_name => "centos/7",
         :ip_addr => '192.168.1.102',
-	      :memory => "512", 
+	      :memory => "2048", 
   }
 }
 
