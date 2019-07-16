@@ -30,7 +30,6 @@
       - logstash
       - filebeat
       - kibana
-      - httpd
     state: installed
     
 - name: Copy configs for ELK & hosts
