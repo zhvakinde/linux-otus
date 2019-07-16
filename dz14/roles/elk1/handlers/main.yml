@@ -1,5 +1,5 @@
 ---
-- name: Enable and start ELK &  services
+- name: Enable and start ELK & services
   service:
     name: "{{ item }}"
     state: restarted
