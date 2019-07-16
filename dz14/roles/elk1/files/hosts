@@ -2,4 +2,4 @@
 ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
 
 192.168.1.101   webserver
-192.168.1.102   elk
+192.168.1.102   elk1
