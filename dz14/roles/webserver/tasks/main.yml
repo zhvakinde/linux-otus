@@ -31,7 +31,7 @@
       - nginx
     state: installed
     
-    - name: Prepare configs for logging & audit services
+- name: Prepare configs for logging & audit services
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
