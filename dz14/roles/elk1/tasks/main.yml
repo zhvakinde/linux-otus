@@ -1,0 +1,55 @@
+---
+- name: Install base packages
+  yum:
+    name:
+      - epel-release
+      - wget
+      - curl
+    state: installed
+
+- name: Add repo ELK repo
+  yum_repository:
+    file: ELK
+    name: elasticsearch-6.x
+    description: Elasticsearch repository for 6.x packages
+    baseurl: https://artifacts.elastic.co/packages/6.x/yum
+    gpgcheck: yes
+    gpgkey: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    enabled: yes
+
+- name: Import ELK repo key
+  rpm_key:
+    state: present
+    key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    
+- name: Install ELK, rsyslog, mariadb
+  yum:
+    name:
+      - java-1.8.0-openjdk 
+      - elasticsearch
+      - logstash
+      - filebeat
+      - kibana
+      - httpd
+    state: installed
+    
+- name: Copy configs for ELK & hosts
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: "{{ item.group }}"
+    mode: "{{ item.mode }}"
+  with_items:
+    - { src: 'elasticsearch.yml', dest: '/etc/elasticsearch/elasticsearch.yml', group: elasticsearch, mode: '0660' }
+    - { src: 'input.conf', dest: '/etc/logstash/conf.d/input.conf', group: root, mode: '0644'  }
+    - { src: 'filter.conf', dest: '/etc/logstash/conf.d/filter.conf', group: root, mode: '0644'  }
+    - { src: 'output.conf', dest: '/etc/logstash/conf.d/output.conf', group: root, mode: '0644'  }
+    - { src: 'filebeat.yml', dest: '/etc/filebeat/filebeat.yml', group: root, mode: '0600' }
+    - { src: 'system.yml', dest: '/etc/filebeat/modules.d/system.yml', group: root, mode: '0644'  }
+    - { src: 'kibana.yml', dest: '/etc/kibana/kibana.yml', group: root, mode: '0644'  }
+    - { src: 'hosts', dest: '/etc/hosts', group: root, mode: '0644'  }
+  notify:
+    - Enable and start ELK & httpd services
+
+...

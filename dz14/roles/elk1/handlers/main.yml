@@ -1,0 +1,15 @@
+---
+- name: Enable and start ELK & httpd services
+  service:
+    name: "{{ item }}"
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+  with_items:
+    - elasticsearch
+    - logstash
+    - filebeat
+    - kibana
+    - httpd
+
+...
