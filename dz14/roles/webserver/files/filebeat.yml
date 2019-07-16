@@ -29,6 +29,8 @@ filebeat.config.modules:
 setup.template.settings:
   index.number_of_shards: 3
   
+setup.kibana:
+  
 output.logstash:
   hosts: ["elk1:5044"]
   
