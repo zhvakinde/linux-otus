@@ -31,6 +31,10 @@
       - nginx
     state: installed
     
+- name: Enable modules filebeat 
+  command:
+      filebeat modules enable nginx system auditd
+    
 - name: Prepare configs for logging & audit services
   copy:
     src: "{{ item.src }}"
