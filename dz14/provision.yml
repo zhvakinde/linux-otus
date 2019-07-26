@@ -9,9 +9,5 @@
   roles:
    - elk1
    
-- hosts: elk2 
-  become: yes
-  roles:
-   - elk2
    
 ...
