@@ -1,0 +1,69 @@
+---
+
+- name: create group "admin"
+  group:
+    name: "admin"
+    state: present
+    
+- name: root to group "admin"
+  user:
+    name: root 
+    append: yes
+    groups: "admin"
+
+- name: vagrant to group "admin"
+  user:
+    name: vagrant
+    append: yes
+    groups: "admin"
+
+- name: create test non-admin user
+  user:
+    name: "test"
+    password: " test| password_hash('sha512') " 
+    state: present
+    update_password: on_create
+
+- name: epel-release install
+  yum:
+    name: epel-release
+    state: present
+
+- name: pam_script install
+  yum:
+    name: pam_script
+    state: present
+
+- name: script provision from template
+  template:
+    backup: true
+    owner: root
+    group: wheel
+    src: "pam.sh"
+    dest: "pam.sh"
+    mode: a+x
+  
+- name: insert a new rule after an existing rule
+  pamd:
+    name: password-auth
+    type: account
+    control: required
+    module_path: pam_unix.so
+    new_type: account
+    new_control: required
+    new_module_path: pam_script.so
+    module_arguments: ['/etc/pam.sh']
+    state: after
+   
+- name: permit ssh with password
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^PasswordAuthentication no'
+    line: 'PasswordAuthentication yes'
+    state: present
+    
+- name: restart_sshd
+  systemd:
+    name: sshd
+    state: restarted
+...
