@@ -7,4 +7,4 @@ PAM
 
 Решение
 
-sed -i "7i account required pam_exec.so /etc/pam.sh" /etc/pam.d/password-auth
+
