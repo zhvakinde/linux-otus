@@ -16,11 +16,18 @@
     name: vagrant
     append: yes
     groups: "admin"
+    
+- name: create testadmin admin user
+  user:
+    name: "testadmin"
+    password: " testadmin | password_hash('sha512') " 
+    state: present
+    update_password: on_create
 
 - name: create test non-admin user
   user:
     name: "test"
-    password: " test| password_hash('sha512') " 
+    password: " test | password_hash('sha512') " 
     state: present
     update_password: on_create
 
