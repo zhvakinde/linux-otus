@@ -1,6 +1,7 @@
 ---
-- name: epel install
-  yum:
-    name: epel-release
-    state: present
+tasks:
+  - name: epel install
+    yum:
+      name: epel-release
+      state: present
 ...
