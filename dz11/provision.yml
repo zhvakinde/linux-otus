@@ -51,7 +51,7 @@
         backup: true
         owner: root
         group: wheel
-        src: "pam.sh"
+        src: "pam.sh.j2"
         dest: "/etc/pam.sh"
         mode: a+x
   
