@@ -17,7 +17,6 @@
     append: yes
     groups: "admin"
 
-
 - name: create test non-admin user
   user:
     name: "test"
