@@ -1,6 +1,6 @@
 ---
 - name: DZ11
-  host: dz11
+  hosts: dz11
   become: true
   tasks:
     - name: epel install
