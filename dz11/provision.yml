@@ -47,11 +47,11 @@
         state: present
 
     - name: script provision from template
-      template:
+      copy:
         backup: true
         owner: root
         group: wheel
-        src: "pam.sh.j2"
+        src: "pam.sh"
         dest: "/etc/pam.sh"
         mode: a+x
   
