@@ -1,7 +1,10 @@
 ---
-tasks:
-  - name: epel install
-    yum:
-      name: epel-release
-      state: present
+- name: DZ11
+  host: dz11
+  become: true
+  tasks:
+    - name: epel install
+      yum:
+        name: epel-release
+        state: present
 ...
