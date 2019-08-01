@@ -23,7 +23,7 @@
     - name: create testadmin admin user
       user:
         name: "testadmin"
-        password: " testadmin | password_hash('sha512') " 
+        password: "testadmin" 
         state: present
         update_password: on_create
         append: yes
@@ -32,7 +32,7 @@
     - name: create test non-admin user
       user:
         name: "test"
-        password: " test | password_hash('sha512') " 
+        password: "test" 
         state: present
         update_password: on_create
 
@@ -52,7 +52,7 @@
         owner: root
         group: wheel
         src: "pam.sh"
-        dest: "pam.sh"
+        dest: "/etc/pam.sh"
         mode: a+x
   
     - name: insert a new rule after an existing rule
