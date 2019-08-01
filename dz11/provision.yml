@@ -46,7 +46,7 @@
         name: pam_script
         state: present
 
-    - name: script provision from template
+    - name: cope script 
       copy:
         backup: true
         owner: root
@@ -73,7 +73,7 @@
         regexp: '^PasswordAuthentication no'
         line: 'PasswordAuthentication yes'
         state: present
-        notify: 
+      notify: 
           - restart_sshd
   
   handlers:
