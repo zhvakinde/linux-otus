@@ -1,20 +1,20 @@
 ---
 - name: create group "admin"
-  group:
+  group: 
     name: admin
     state: present
     
-- name: root to group admin
+- name: root to group "admin"
   user:
     name: root 
     append: yes
-    groups: "admin"
+    groups: admin
 
-- name: vagrant to group admin
+- name: vagrant to group "admin"
   user:
     name: vagrant
     append: yes
-    groups: "admin"
+    groups: admin
     
 - name: create testadmin admin user
   user:
@@ -22,6 +22,8 @@
     password: " testadmin | password_hash('sha512') " 
     state: present
     update_password: on_create
+    append: yes
+    groups: admin
 
 - name: create test non-admin user
   user:
