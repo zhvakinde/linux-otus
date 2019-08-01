@@ -1,5 +1,0 @@
----
-- name: Create group "admin"
-  group:
-    name: admin
-    state: present
