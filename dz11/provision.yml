@@ -1,17 +1,16 @@
 ---
-
-- name: create group "admin"
+- name: create group admin
   group:
     name: "admin"
     state: present
     
-- name: root to group "admin"
+- name: root to group admin
   user:
     name: root 
     append: yes
     groups: "admin"
 
-- name: vagrant to group "admin"
+- name: vagrant to group admin
   user:
     name: vagrant
     append: yes
