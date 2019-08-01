@@ -46,39 +46,39 @@
         name: pam_script
         state: present
 
-   - name: script provision from template
-     template:
-       backup: true
-       owner: root
-       group: wheel
-       src: "pam.sh"
-       dest: "pam.sh"
-       mode: a+x
+    - name: script provision from template
+      template:
+        backup: true
+        owner: root
+        group: wheel
+        src: "pam.sh"
+        dest: "pam.sh"
+        mode: a+x
   
-   - name: insert a new rule after an existing rule
-     pamd:
-       name: password-auth
-       type: account
-       control: required
-       module_path: pam_unix.so
-       new_type: account
-       new_control: required
-       new_module_path: pam_script.so
-       module_arguments: ['/etc/pam.sh']
-       state: after
+    - name: insert a new rule after an existing rule
+      pamd:
+        name: password-auth
+        type: account
+        control: required
+        module_path: pam_unix.so
+        new_type: account
+        new_control: required
+        new_module_path: pam_script.so
+        module_arguments: ['/etc/pam.sh']
+        state: after
    
-   - name: permit ssh with password
-     lineinfile:
-       path: /etc/ssh/sshd_config
-       regexp: '^PasswordAuthentication no'
-       line: 'PasswordAuthentication yes'
-       st
-       notify: 
-         - restart_sshd
+    - name: permit ssh with password
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^PasswordAuthentication no'
+        line: 'PasswordAuthentication yes'
+        state: present
+        notify: 
+          - restart_sshd
    
-   handlers:
-       - name: restart_sshd
-         systemd:
-           name: sshd
-           state: restarted
+    handlers:
+      - name: restart_sshd
+        systemd:
+          name: sshd
+          state: restarted
 ...
