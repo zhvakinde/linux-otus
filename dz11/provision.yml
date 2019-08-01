@@ -1,0 +1,6 @@
+---
+ - name: Create
+   group:
+     name: admin
+     state: present
+...
