@@ -1,8 +1,8 @@
 ---
-- name: create group "admin"
-  group: 
-    name: admin
-    state: present
+#- name: create group "admin"
+ # group: 
+  #  name: admin
+   # state: present
     
 - name: root to group "admin"
   user:
