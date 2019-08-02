@@ -2,6 +2,10 @@
 - name: DZ11
   hosts: dz11
   become: true
+  
+  vars:
+    pass_test: "test"
+  
   tasks:
     - name: create group "admin"
       group: 
@@ -23,7 +27,7 @@
     - name: create testadmin admin user
       user:
         name: "testadmin"
-        password: "testadmin | password_hash('sha512')" 
+        password: "{{ pass_test | password_hash('sha512') }}"  
         state: present
         update_password: on_create
         append: yes
