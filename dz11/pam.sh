@@ -2,6 +2,7 @@
 
 # Проверяем принадлежность пользователя к группе admin
 if groups $PAM_USER | grep -c admin ; then
+echo "You are in the admin group."
        exit 0
     else
 fi
@@ -12,4 +13,5 @@ if [[ $(curl -s https://isdayoff.ru/$(date +%y%m%d)) -eq 0 ]]; then
     exit 0
 fi
 # Отказ по-умочанию.
+echo "Login denied.
 exit 1
