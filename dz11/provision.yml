@@ -36,7 +36,7 @@
     - name: create test non-admin user
       user:
         name: "test"
-        password: 'test | password_hash('sha512')' 
+        password: "{{ pass_test | password_hash('sha512') }}"
         state: present
         update_password: on_create
 
