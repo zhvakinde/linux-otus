@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Проверяем принадлежность пользователя к группе admin
-if groups $PAM_USER | grep -c admin ; then
+if groups $PAM_USER | grep &>/dev/null '\b admin \b' ; then
 echo "You are in the admin group."
        exit 0
     else
