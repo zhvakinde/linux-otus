@@ -68,7 +68,7 @@
         new_type: account
         new_control: required
         new_module_path: pam_script.so
-        module_arguments: ['/etc/pam-script.d/pam_script_acct']
+        module_arguments: ['/etc/pam-script.d/pam_script_acct, onerr=fail']
         state: after
    
     - name: permit ssh with password
