@@ -56,7 +56,7 @@
         owner: root
         group: wheel
         src: "pam.sh"
-        dest: "/etc/pam-script.d"
+        dest: "/etc/pam-script.d/pam.sh"
         mode: a+x
   
     - name: insert a new rule after an existing rule
