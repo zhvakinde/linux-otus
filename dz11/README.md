@@ -8,7 +8,7 @@ PAM
 Решение дополнительного задания
 1. добавить пользователя в группу docker
 2. добавить пользователю прав на выполение рестарта docker через sudoers
-user ALL= NOPASSWD: /bin/systemctl restart docker.service
-user ALL= NOPASSWD: /bin/systemctl restart docker
+* user ALL= NOPASSWD: /bin/systemctl restart docker.service
+* user ALL= NOPASSWD: /bin/systemctl restart docker
 
 
