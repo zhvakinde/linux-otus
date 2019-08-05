@@ -38,11 +38,32 @@ Vagrant.configure("2") do |config|
       when "client"
       box.vm.provision "shell", run: "always", inline: <<-SHELL
       yum install -y vim bacula-client
+      /bin/cp -f /vagrant/bacula-fd.conf /etc/bacula/
       SHELL
 
      when "bacula"
      box.vm.provision "shell", run: "always", inline: <<-SHELL
      yum install -y bacula-director-mysql bacula-storage-mysql bacula-console mariadb-server
+     systemctl start mariadb
+     systemctl enable mariadb
+
+     /usr/libexec/bacula/grant_mysql_privileges
+     /usr/libexec/bacula/create_mysql_database -u root
+     /usr/libexec/bacula/make_mysql_tables -u bacula
+
+     mysql -e "UPDATE mysql.user SET Password=PASSWORD('bacula_db_password') WHERE User='bacula';"
+     mysql -e "FLUSH PRIVILEGES"
+      
+     echo 1 | alternatives --config libbaccats.so
+
+     mkdir -p /bacula/backup /bacula/restore
+     chown -R bacula:bacula /bacula
+     chmod -R 700 /bacula
+
+      /bin/cp -f /vagrant/{bacula-dir.conf,bacula-sd.conf,bconsole.conf} /etc/bacula/
+      systemctl enable --now {bacula-dir,bacula-sd}
+
+     
       SHELL
 
 end
