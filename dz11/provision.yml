@@ -59,17 +59,17 @@
         dest: "/etc/pam-script.d/pam_script_acct"
         mode: a+x
   
-   - name: insert a new rule after an existing rule
-     pamd:
-       name: password-auth
-       type: account
-       control: required
-       module_path: pam_unix.so
-       new_type: account
-       new_control: required
-       new_module_path: pam_script.so
-       module_arguments: ['/etc/pam-script.d/pam_script_acct']
-       state: after
+    - name: insert a new rule after an existing rule
+      pamd:
+        name: password-auth
+        type: account
+        control: required
+        module_path: pam_unix.so
+        new_type: account
+        new_control: required
+        new_module_path: pam_script.so
+        module_arguments: ['/etc/pam-script.d/pam_script_acct']
+        state: after
    
     - name: permit ssh with password
       lineinfile:
