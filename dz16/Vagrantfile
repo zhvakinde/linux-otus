@@ -52,6 +52,12 @@ Vagrant.configure("2") do |config|
      /usr/libexec/bacula/make_mysql_tables -u bacula
 
      mysql -e "UPDATE mysql.user SET Password=PASSWORD('bacula_db_password') WHERE User='bacula';"
+     mysql -e "UPDATE mysql.user SET Password = PASSWORD('123456') WHERE User = 'root'"
+     mysql -e "DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');"
+     mysql -e "DROP USER ''@'localhost'"
+     mysql -e "DROP USER ''@'$(hostname)'"
+     mysql -e "DROP DATABASE test"
+
      mysql -e "FLUSH PRIVILEGES"
       
      echo 1 | alternatives --config libbaccats.so
