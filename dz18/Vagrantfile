@@ -16,6 +16,8 @@ MACHINES = {
                    {ip: '192.168.0.1', adapter: 3, netmask: "255.255.255.240", virtualbox__intnet: "dir-net"},
                    {ip: '192.168.0.33', adapter: 4, netmask: "255.255.255.240", virtualbox__intnet: "hw-net"},
                    {ip: '192.168.0.65', adapter: 5, netmask: "255.255.255.192", virtualbox__intnet: "mgt-net"},
+                   {ip: '192.168.255.5', adapter: 6, netmask: "255.255.255.252", virtualbox__intnet: "piring-office1-net"},
+                   {ip: '192.168.255.9', adapter: 7, netmask: "255.255.255.252", virtualbox__intnet: "piring-office2-net"},
                 ]
   },
   
@@ -32,7 +34,7 @@ MACHINES = {
   :office1Router => {
         :box_name => "centos/7",
         :net => [
-                   {ip: '192.168.0.2', adapter: 2, netmask: "255.255.255.240", virtualbox__intnet: "dir-net"},
+                   {ip: '192.168.255.6', adapter: 2, netmask: "255.255.255.252", virtualbox__intnet: "piring-office1-net"},
                    {adapter: 3, auto_config: false, virtualbox__intnet: true},
                    {adapter: 4, auto_config: false, virtualbox__intnet: true},
                 ]
@@ -41,7 +43,7 @@ MACHINES = {
   :office2Router => {
         :box_name => "centos/7",
         :net => [
-                   {ip: '192.168.0.2', adapter: 2, netmask: "255.255.255.240", virtualbox__intnet: "dir-net"},
+                   {ip: '192.168.255.10', adapter: 2, netmask: "255.255.255.252", virtualbox__intnet: "piring-office2-net"},
                    {adapter: 3, auto_config: false, virtualbox__intnet: true},
                    {adapter: 4, auto_config: false, virtualbox__intnet: true},
                 ]
