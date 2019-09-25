@@ -17,8 +17,8 @@ fi
 analyse() {
         FTARGETFILE=$1
         FRESULTFILE=$2
-        ASTART=`head -n 1 $1 |awk '{print $4,$5}'`
-        AFINISH=`tail -n 1 $1 |awk '{print $4,$5}'`
+        ASTART=$(cat /var/log/cron | grep parse | sort | tail -1 | awk '{print $3}')
+        AFINISH=$(date '+%H:%M:%S')
         echo "---" > $2
         echo "Log has been analyzed from $ASTART to $AFINISH" >> $2
         echo "---" >> $2
@@ -37,7 +37,7 @@ analyse() {
 }
 analyse $WORKFILE $RESULTFILE
 cat $RESULTFILE | mail -s "Message fron NGINX parser" admin@test.ru
-cp $RESULTFILE /vagrant/log_parser-'`date +%d%b%Y-%T`'
+cp $RESULTFILE /vagrant/log_parser_stat_$ASTART_$AFINISH
 rm -f $RESULTFILE
 
 rm -f $LOCK
