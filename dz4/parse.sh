@@ -35,7 +35,8 @@ analyse() {
 }
 analyse $WORKFILE $RESULTFILE
 cat $RESULTFILE | mail -s "Message fron NGINX parser" admin@test.ru
-
+cp $RESULTFILE /vagrant/log_parser-`date +%d%b%Y-%T`'
+rm -f $RESULTFILE
 
 rm -f $LOCK
         trap - INT TERM EXIT
