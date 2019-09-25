@@ -10,8 +10,7 @@ then
 else
         touch $LOCK
         trap 'rm -f $LOCK; exit $?' INT TERM EXIT
-WORKFILE=/vagrant/access.log
-RESULTFILE=/vagrant/result
+fi
 
 analyse() {
         FTARGETFILE=$1
@@ -40,4 +39,4 @@ cat $RESULTFILE | mail -s "Message fron NGINX parser" admin@test.ru
 
 rm -f $LOCK
         trap - INT TERM EXIT
-fi
+
