@@ -39,7 +39,7 @@ analyse $WORKFILE $RESULTFILE
 cat $RESULTFILE | mail -s "Message fron NGINX parser" admin@test.ru
 
 TIME=$(cat /var/log/cron | grep parse | sort | tail -1 | awk '{print $3}')
-cp $RESULTFILE /vagrant/log_parser_stat_TIME
+cp $RESULTFILE /vagrant/log_parser_stat_$TIME
 rm -f $RESULTFILE
 
 rm -f $LOCK
