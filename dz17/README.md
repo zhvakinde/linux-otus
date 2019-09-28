@@ -1,4 +1,5 @@
 #Домашнее задание
+
 настраиваем split-dns
 взять стенд https://github.com/erlong15/vagrant-bind
 добавить еще один сервер client2
