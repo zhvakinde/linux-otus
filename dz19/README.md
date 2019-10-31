@@ -1,5 +1,5 @@
 #Домашнее задание
-#Сценарии iptables
+Сценарии iptables
 1) Реализовать knocking port, centralRouter может попасть на ssh inetrRouter через knock скрипт. Пример в материалах.
 2) Добавить inetRouter2, который виден(маршрутизируется (host-only тип сети для виртуалки)) с хоста или форвардится порт через локалхост.
 3) Запустить nginx на centralServer.
