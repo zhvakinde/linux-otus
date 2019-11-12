@@ -3,13 +3,12 @@
   hosts: routers
   become: true
   gather_facts: true
-  
-    - name: copy conf file ospfd.conf with "cost 1000"
+    - name: Copy conf file ospfd.conf with "cost 1000"
       block:
-        - name: Copy configuration files on router1 (cost changed)
-          copy: src={{ item.src }} dest={{ item.dest }}
-          with_items:
-              - { src: 'ospfd_router1_a.conf', dest: '/etc/quagga/ospfd.conf' }
+         - name: Copy configuration files on router1 (cost changed)
+           copy: src={{ item.src }} dest={{ item.dest }}
+           with_items:
+               - { src: 'ospfd_router1_a.conf', dest: '/etc/quagga/ospfd.conf' }
        
         - name: change file ownership ospfd.conf
           file:
@@ -21,6 +20,6 @@
           service:
             name: ospfd
             state: restarted
-       when: ansible_hostname == "router1"
+      when: ansible_hostname == "router1"
   
 ...
