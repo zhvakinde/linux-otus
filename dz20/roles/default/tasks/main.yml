@@ -1,5 +1,5 @@
 ---
-# / START / forwarding ip
+
 - name: Enable forwarding
   sysctl:
     name: net.ipv4.ip_forward
@@ -22,7 +22,6 @@
     state: present
     reload: yes
 
-# / END / forwarding ip
 - name: base packages install 
   yum:
     name: "{{ packages }}"
@@ -32,16 +31,10 @@
     - libsemanage-python
     - traceroute
 
-# / START / Install Quagga
-
 - name: Install quagga
   yum:
     name: quagga
     state: latest
-       
-# / END / Install Quagga
-
-# / START / Let's copy config files
 
 - name: Copy config files on router1
   block:
@@ -49,7 +42,7 @@
       copy: src={{ item.src }} dest={{ item.dest }}
       with_items:
            - { src: 'ospfd_router1.conf', dest: '/etc/quagga/ospfd.conf' }
-#           - { src: 'zebra_router1.conf', dest: '/etc/quagga/zebra.conf' }
+
   when: ansible_hostname == "router1"
    
 - name: Copy config files on router2
@@ -58,7 +51,7 @@
       copy: src={{ item.src }} dest={{ item.dest }}
       with_items:
            - { src: 'ospfd_router2.conf', dest: '/etc/quagga/ospfd.conf' }
- #          - { src: 'zebra_router2.conf', dest: '/etc/quagga/zebra.conf' }
+
   when: ansible_hostname == "router2" 
 
 - name: Copy config files on router3
@@ -67,12 +60,8 @@
       copy: src={{ item.src }} dest={{ item.dest }}
       with_items:
            - { src: 'ospfd_router3.conf', dest: '/etc/quagga/ospfd.conf' }
-#           - { src: 'zebra_router3.conf', dest: '/etc/quagga/zebra.conf' }
+
   when: ansible_hostname == "router3"
-
-# / END / Let's copy config files
-
-# / START / Changing owners for config files
 
 - name: change file ownership ospfd.conf
   file:
@@ -109,5 +98,4 @@
     name: network
     state: restarted
 
-# / END / Changing owners for config files
 ...
