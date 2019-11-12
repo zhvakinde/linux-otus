@@ -48,8 +48,8 @@
     - name: Copy configuration files on router1 
       copy: src={{ item.src }} dest={{ item.dest }}
       with_items:
-           - { src: 'ospfd_R1.conf', dest: '/etc/quagga/ospfd.conf' }
-           - { src: 'zebra-R1.conf', dest: '/etc/quagga/zebra.conf' }
+           - { src: 'ospfd_router1.conf', dest: '/etc/quagga/ospfd.conf' }
+           - { src: 'zebra_router1.conf', dest: '/etc/quagga/zebra.conf' }
   when: ansible_hostname == "router1"
    
 - name: Copy config files on router2
@@ -57,8 +57,8 @@
     - name: Copy configuration files on router2
       copy: src={{ item.src }} dest={{ item.dest }}
       with_items:
-           - { src: 'ospfd_R2.conf', dest: '/etc/quagga/ospfd.conf' }
-           - { src: 'zebra-R2.conf', dest: '/etc/quagga/zebra.conf' }
+           - { src: 'ospfd_router2.conf', dest: '/etc/quagga/ospfd.conf' }
+           - { src: 'zebra_router2.conf', dest: '/etc/quagga/zebra.conf' }
   when: ansible_hostname == "router2" 
 
 - name: Copy config files on router3
@@ -66,8 +66,8 @@
     - name: Copy configuration files on router3
       copy: src={{ item.src }} dest={{ item.dest }}
       with_items:
-           - { src: 'ospfd_R3.conf', dest: '/etc/quagga/ospfd.conf' }
-           - { src: 'zebra-R3.conf', dest: '/etc/quagga/zebra.conf' }
+           - { src: 'ospfd_router3.conf', dest: '/etc/quagga/ospfd.conf' }
+           - { src: 'zebra_router3.conf', dest: '/etc/quagga/zebra.conf' }
   when: ansible_hostname == "router3"
 
 # / END / Let's copy config files
