@@ -3,7 +3,13 @@
   hosts: routers
   become: true
   gather_facts: true
+<<<<<<< HEAD
     - name: Copy conf file ospfd.conf with "cost 1000"
+=======
+  
+  tasks:
+    - name: copy conf file ospfd.conf with "cost 1000"
+>>>>>>> 63d728778b57e5a58e4207b4d53d0e1c66ed1f91
       block:
          - name: Copy configuration files on router1 (cost changed)
            copy: src={{ item.src }} dest={{ item.dest }}
