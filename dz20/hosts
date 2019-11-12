@@ -1,4 +1,4 @@
 [routers]
-router1 ansible_ssh_host=127.0.0.1 ansible_port=2202
-router2 ansible_ssh_host=127.0.0.1 ansible_port=2203
-router3 ansible_ssh_host=127.0.0.1 ansible_port=2204
+router1 ansible_ssh_host=127.0.0.1 ansible_port=2203
+router2 ansible_ssh_host=127.0.0.1 ansible_port=2204
+router3 ansible_ssh_host=127.0.0.1 ansible_port=2205
