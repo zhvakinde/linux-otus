@@ -19,7 +19,7 @@ MACHINES = {
   :router3 => {
         :box_name => "centos/7",
         :net => [
-                    {ip: '192.168.20.2', adapter: 2, netmask: "255.255.255.248", virtualbox__intnet: "rnet2"},
+                    {ip: '192.168.20.2', adapter: 2, netmask: "255.255.255.248", virtualbox__intnet: "net2"},
                     {ip: '192.168.30.2', adapter: 3, netmask: "255.255.255.248", virtualbox__intnet: "net3"},
                 ]
   }
