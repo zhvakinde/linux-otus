@@ -23,6 +23,14 @@
     reload: yes
 
 # / END / forwarding ip
+- name: base packages install 
+  yum:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+    - libsemanage-python
+    - traceroute
 
 # / START / Install Quagga
 
