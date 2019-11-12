@@ -1,4 +1,4 @@
-me: Start setting OSPF-quagga asymmentrical routes
+- name: Start setting OSPF-quagga asymmentrical routes
   hosts: routers
   become: true
   gather_facts: true
