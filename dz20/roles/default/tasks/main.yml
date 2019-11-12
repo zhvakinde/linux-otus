@@ -24,14 +24,6 @@
 
 # / END / forwarding ip
 
-# / Start / Disable SElinux
-
-#- name: Change policy and state of SELinux
-# selinux:
-#   state: disabled
-
-# / END / Disable SElinux
-
 # / START / Install Quagga
 
 - name: Install quagga
@@ -79,12 +71,19 @@
      path: /etc/quagga/ospfd.conf
      owner: quagga
      group: quagga
+    
 - name: change file ownership zebra.conf
   file:
      path: /etc/quagga/zebra.conf
      owner: quagga
      group: quagga
-
+     
+- name: selinux zebra_write_config - allow to modify files 
+  seboolean:
+    name: zebra_write_config
+    persistent: yes
+    state: yes
+    
 - name: Start and Enable zebra 
   service:
     name: zebra
@@ -103,3 +102,4 @@
     state: restarted
 
 # / END / Changing owners for config files
+...
