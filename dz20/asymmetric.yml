@@ -3,7 +3,7 @@
   hosts: routers
   become: true
   gather_facts: true
-   
+  
 - name: copy conf file ospfd.conf with "cost 1000"
   block:
     - name: Copy configuration files on router1 (cost changed)
