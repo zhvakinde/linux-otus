@@ -21,6 +21,6 @@
           service:
             name: ospfd
             state: restarted
-       when: ansible_hostname == "router1"
+      when: ansible_hostname == "router1"
   
 ...
