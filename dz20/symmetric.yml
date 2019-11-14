@@ -9,7 +9,7 @@
         - name: Copy configuration files on router3 (cost changed)
           copy: src={{ item.src }} dest={{ item.dest }}
           with_items:
-              - { src: 'ospfd_router1_a.conf', dest: '/etc/quagga/ospfd.conf' }
+              - { src: 'ospfd_router3_a.conf', dest: '/etc/quagga/ospfd.conf' }
        
     - name: change file ownership ospfd.conf
       file:
