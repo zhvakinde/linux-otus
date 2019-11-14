@@ -32,9 +32,8 @@ MACHINES = {
 Vagrant.configure("2") do |config|
 
   MACHINES.each do |boxname, boxconfig|
-
-    config.vm.define boxname do |box|
-
+        config.vm.usable_port_range = (2200..2205)
+        config.vm.define boxname do |box|
         box.vm.box = boxconfig[:box_name]
         box.vm.host_name = boxname.to_s
 
