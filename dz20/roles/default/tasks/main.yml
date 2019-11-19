@@ -30,6 +30,7 @@
     packages:
     - libsemanage-python
     - traceroute
+    - tcpdump
 
 - name: Install quagga
   yum:
