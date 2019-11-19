@@ -22,7 +22,7 @@ Vagrantfile + ansible
 * 08:02:25.411999 IP router1 > 10.10.20.1: ICMP echo request, id 7830, seq 1, length 64
 * 08:02:26.412234 IP router1 > 10.10.20.1: ICMP echo request, id 7830, seq 2, length 64
 
-А ICMP echo reply приходят на интерфейса 1
+А ICMP echo reply приходят на интерфейс 1
 * listening on eth1, link-type EN10MB (Ethernet), capture size 262144 bytes
 * 07:57:13.333323 IP 10.10.20.1 > router1: ICMP echo reply, id 7779, seq 15, length 64
 * 07:57:14.334131 IP 10.10.20.1 > router1: ICMP echo reply, id 7779, seq 16, length 64
