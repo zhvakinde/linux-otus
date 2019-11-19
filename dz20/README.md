@@ -31,7 +31,7 @@ Vagrantfile + ansible
 
 3. Для настройки симметричного маршрута необходимо выполнить плейбук `symmetric.yml`
 
-Для проверки включаем tcpdump на интерфейсах 1 и 2 роутера. пингуем адрес 10.10.20.1
+Для проверки включаем tcpdump на интерфейсах 1 и 2 роутера 1. пингуем адрес 10.10.20.1
 видим что ICMP echo request уходит с интерфейса 2 и ICMP echo reply приходят туда же.
 * listening on eth2, link-type EN10MB (Ethernet), capture size 262144 bytes
 * 08:14:21.722389 IP router1 > 10.10.20.1: ICMP echo request, id 7830, seq 715, length 64
