@@ -16,7 +16,7 @@ Vagrantfile + ansible
 
 2. Для настройки асимметричного маршрута необходимо выполнить плейбук `asymmetric.yml`.
 
-Для проверки включаем tcpdump на интерфейсах 1 и 2 роутера. пингуем адрес 10.10.20.1
+Для проверки включаем tcpdump на интерфейсах 1 и 2 роутера 1. Пингуем адрес 10.10.20.1
 видим что ICMP echo request уходит с интерфейса 2
 * listening on eth2, link-type EN10MB (Ethernet), capture size 262144 bytes
 * 08:02:25.411999 IP router1 > 10.10.20.1: ICMP echo request, id 7830, seq 1, length 64
