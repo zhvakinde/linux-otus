@@ -43,10 +43,10 @@
   - name: set /etc/named permissions
     file: path=/etc/named owner=root group=named mode=0670
   
-  - name: Change the named_t domain to permissive
-    selinux_permissive:
-      name: named_t
-      permissive: true
+  #- name: Change the named_t domain to permissive
+   # selinux_permissive:
+   #   name: named_t
+    #  permissive: true
 
   - name: ensure named is running and enabled
     service: name=named state=restarted enabled=yes
