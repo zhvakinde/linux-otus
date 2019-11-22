@@ -51,8 +51,8 @@
       name: named_t
       permissive: true
 
- - name: restart named
-   service: name=named state=restarted
+  - name: restart named
+    service: name=named state=restarted
     
 - hosts: client
   sudo: yes
