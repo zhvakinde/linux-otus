@@ -64,7 +64,7 @@
   - name: copy motd to the client
     copy: src=client-motd dest=/etc/motd owner=root group=root mode=0644
 
-- hosts: client
+- hosts: client2
   sudo: yes
   tasks:
   - name: copy resolv.conf to the client
