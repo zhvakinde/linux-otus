@@ -2,15 +2,6 @@
 - hosts: inetrouter
   become: yes
   tasks:
-  - name: configure team connection and vlan in inetrouter
-    shell: |
-      nmcli connection add type team ifname team0
-      nmcli con mod team-team0 ipv4.addresses 192.168.255.1/24
-      nmcli con mod team-team0 ipv4.method manual
-      nmcli con mod team-team0 ifname team0 config '{"runner": {"name": "loadbalance", "active": true}}'
-      nmcli con add type ethernet con-name Team0-port1 ifname eth1 master team0
-      nmcli con add type team-slave con-name Team0-port2 ifname eth2 master team0
-      nmcli connection up id team-team0
   - name: set iptables masquerade on inetRouter
     command: iptables -t nat -A POSTROUTING ! -d 192.168.255.0/24 -o eth0 -j MASQUERADE 
   - name: set iptables masquerade on inetRouter 2
@@ -26,7 +17,17 @@
     service:
       name: network
       state: restarted
-    
+  
+  - name: configure team connection and vlan in inetrouter
+    shell: |
+      nmcli connection add type team ifname team0
+      nmcli con mod team-team0 ipv4.addresses 192.168.255.1/24
+      nmcli con mod team-team0 ipv4.method manual
+      nmcli con mod team-team0 ifname team0 config '{"runner": {"name": "loadbalance", "active": true}}'
+      nmcli con add type ethernet con-name Team0-port1 ifname eth1 master team0
+      nmcli con add type team-slave con-name Team0-port2 ifname eth2 master team0
+      nmcli connection up id team-team0
+      
     
 - hosts: centralrouter
   become: yes
