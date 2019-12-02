@@ -11,9 +11,17 @@
       nmcli con add type ethernet con-name Team0-port1 ifname eth1 master team0
       nmcli con add type team-slave con-name Team0-port2 ifname eth2 master team0
       nmcli connection up id team-team0
+      
 - hosts: centralrouter
   become: yes
   tasks:
+  - name: disable default route
+    shell: | 
+      echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+  - name: restart network
+    service:
+      name: network
+      state: restarted
   - name: configure team connection and vlan in centralrouter
     shell: |
       nmcli connection add type team ifname team0
