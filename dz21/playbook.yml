@@ -2,7 +2,7 @@
 - hosts: inetrouter
   become: yes
   tasks:
-  - name: Конфигурируем и включаем бондинг на inetrouter
+  - name: configure team connection and vlan in inetrouter
     shell: |
       nmcli connection add type team ifname team0
       nmcli con mod team-team0 ipv4.addresses 192.168.255.1/24
@@ -14,10 +14,11 @@
 - hosts: centralrouter
   become: yes
   tasks:
-  - name: Конфигурируем и включаем бондинг и vlan на centralrouter
+  - name: configure team connection and vlan in centralrouter
     shell: |
       nmcli connection add type team ifname team0
       nmcli con mod team-team0 ipv4.addresses 192.168.255.2/24
+      nmcli con mod team0 ipv4.gateway 192.168.255.1
       nmcli con mod team-team0 ipv4.method manual
       nmcli con mod team-team0 ifname team0 config '{"runner": {"name": "loadbalance", "active": true}}'
       nmcli con add type ethernet con-name Team0-port1 ifname eth1 master team0
@@ -29,23 +30,47 @@
 - hosts: testserver1
   become: yes
   tasks:
-  - name: Включаем vlan на testserver1
+  - name: disable default route
+    shell: | 
+      echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+  - name: configure vlan 
     shell: |
-      nmcli con add type vlan ifname VLAN100 dev eth1 id 100 ip4 10.10.10.254/24 gw4 10.10.10.100
+      nmcli con add type vlan ifname VLAN100 dev eth1 id 101 ip4 10.10.10.254/24 gw4 10.10.10.100
+  - name: restart network
+    service:
+      name: network
+      state: restarted
+
       
 - hosts: testserver2
   become: yes
   tasks:
-  - name: Включаем vlan на testserver2
+  - name: disable default route
+    shell: | 
+      echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+  - name: configure vlan 
     shell: |
       nmcli con add type vlan ifname VLAN101 dev eth1 id 101 ip4 10.10.10.254/24 gw4 10.10.10.101
+  - name: restart network
+    service:
+      name: network
+      state: restarted
+
       
 - hosts: testclient1
   become: yes
   tasks:
-  - name: Включаем vlan на testclient1
+  - name: disable default route
+    shell: | 
+      echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+  - name: configure vlan 
     shell: |
-      nmcli con add type vlan ifname VLAN100 dev eth1 id 100 ip4 10.10.10.1/24 gw4 10.10.10.100
+      nmcli con add type vlan ifname VLAN100 dev eth1 id 101 ip4 10.10.10.1/24 gw4 10.10.10.100
+  - name: restart network
+    service:
+      name: network
+      state: restarted
+
 
 - hosts: testclient2
   become: yes
@@ -53,7 +78,7 @@
   - name: disable default route
     shell: | 
       echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0
-  - name: Включаем vlan на testserver1 testclient2
+  - name: configure vlan 
     shell: |
       nmcli con add type vlan ifname VLAN101 dev eth1 id 101 ip4 10.10.10.1/24 gw4 10.10.10.101
   - name: restart network
