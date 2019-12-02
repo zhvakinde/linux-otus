@@ -29,11 +29,9 @@
 - hosts: centralrouter
   become: yes
   tasks:
-  - name: disable default route
-    shell: | 
-      echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0
   - name: configure team connection and vlan in centralrouter
     shell: |
+      nmcli device modify eth0 ipv4.never-default yes
       nmcli connection add type team ifname team0
       nmcli con mod team-team0 ipv4.addresses 192.168.255.2/24
       nmcli con mod team-team0 ipv4.gateway 192.168.255.1
@@ -59,11 +57,9 @@
 - hosts: testserver1
   become: yes
   tasks:
-  - name: disable default route
-    shell: | 
-      echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0
   - name: configure vlan 
     shell: |
+      nmcli device modify eth0 ipv4.never-default yes
       nmcli con add type vlan ifname VLAN100 dev eth1 id 101 ip4 10.10.10.254/24 gw4 10.10.10.100
   - name: restart network
     service:
