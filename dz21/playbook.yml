@@ -11,7 +11,20 @@
       nmcli con add type ethernet con-name Team0-port1 ifname eth1 master team0
       nmcli con add type team-slave con-name Team0-port2 ifname eth2 master team0
       nmcli connection up id team-team0
-      
+  - name: set iptables masquerade on inetRouter
+    command: iptables -t nat -A POSTROUTING ! -d 192.168.0.0/16 -o eth0 -j MASQUERADE
+  - name: set forwarding ip
+    sysctl:
+      name: net.ipv4.ip_forward
+      value: 1
+      sysctl_set: yes
+      state: present
+      reload: yes
+  - name: restart network 
+    service:
+      name: network
+      state: restarted
+    
 - hosts: centralrouter
   become: yes
   tasks:
@@ -30,6 +43,13 @@
       nmcli connection up id team-team0
       nmcli con add type vlan ifname VLAN100 dev eth3 id 100 ip4 10.10.10.100/24
       nmcli con add type vlan ifname VLAN101 dev eth3 id 101 ip4 10.10.10.101/24
+  - name: set forwarding ip
+    sysctl:
+      name: net.ipv4.ip_forward
+      value: 1
+      sysctl_set: yes
+      state: present
+      reload: yes
   - name: restart network
     service:
       name: network
@@ -93,3 +113,4 @@
     service:
       name: network
       state: restarted
+...
