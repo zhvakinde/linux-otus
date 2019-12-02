@@ -12,7 +12,7 @@
       nmcli con add type team-slave con-name Team0-port2 ifname eth2 master team0
       nmcli connection up id team-team0
   - name: set iptables masquerade on inetRouter
-    command: iptables -t nat -A POSTROUTING ! -d 192.168.255.0/24 -o eth0 -j MASQUERADE
+    command: iptables -t nat -A POSTROUTING ! -o eth0 -j MASQUERADE
   - name: set forwarding ip
     sysctl:
       name: net.ipv4.ip_forward
