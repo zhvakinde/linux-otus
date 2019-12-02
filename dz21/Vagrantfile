@@ -65,32 +65,11 @@ Vagrant.configure("2") do |config|
           mkdir -p ~root/.ssh
                 cp ~vagrant/.ssh/auth* ~root/.ssh
         SHELL
+         
+        box.vm.provision "ansible" do |ansible|
+        ansible.playbook = "provisioning/playbook.yml"
         
-        case boxname.to_s
-        when "inetrouter"
-          box.vm.provision "ansible_local" do |ansible|
-            ansible.playbook = "playbook.yml"
-          end
-        when "centralrouter"
-          box.vm.provision "ansible_local" do |ansible|
-            ansible.playbook = "playbook.yml"
-          end
-        when "testserver1"
-          box.vm.provision "ansible_local" do |ansible|
-            ansible.playbook = "playbook.yml"
-          end
-        when "testserver2"
-          box.vm.provision "ansible_local" do |ansible|
-            ansible.playbook = "playbook.yml"
-          end
-        when "testclient1"
-          box.vm.provision "ansible_local" do |ansible|
-            ansible.playbook = "playbook.yml"
-          end
-        when "testclient2"
-          box.vm.provision "ansible_local" do |ansible|
-            ansible.playbook = "playbook.yml"
-        end
+   
       end
 
   end
