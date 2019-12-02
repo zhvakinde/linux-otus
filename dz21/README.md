@@ -19,3 +19,4 @@ testClient2 <-> testServer2
 * реализовать teaming вместо bonding'а (проверить работу в active-active).
 ** реализовать работу интернета с test машин. 
 ---
+![Схема сети](network.png)
