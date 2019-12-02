@@ -70,11 +70,9 @@
 - hosts: testserver2
   become: yes
   tasks:
-  - name: disable default route
-    shell: | 
-      echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0
   - name: configure vlan 
     shell: |
+      nmcli device modify eth0 ipv4.never-default yes
       nmcli con add type vlan ifname VLAN101 dev eth1 id 101 ip4 10.10.10.254/24 gw4 10.10.10.101
   - name: restart network
     service:
@@ -85,11 +83,9 @@
 - hosts: testclient1
   become: yes
   tasks:
-  - name: disable default route
-    shell: | 
-      echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0
   - name: configure vlan 
     shell: |
+      nmcli device modify eth0 ipv4.never-default yes
       nmcli con add type vlan ifname VLAN100 dev eth1 id 101 ip4 10.10.10.1/24 gw4 10.10.10.100
   - name: restart network
     service:
@@ -100,11 +96,9 @@
 - hosts: testclient2
   become: yes
   tasks:
-  - name: disable default route
-    shell: | 
-      echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0
   - name: configure vlan 
     shell: |
+      nmcli device modify eth0 ipv4.never-default yes
       nmcli con add type vlan ifname VLAN101 dev eth1 id 101 ip4 10.10.10.1/24 gw4 10.10.10.101
   - name: restart network
     service:
