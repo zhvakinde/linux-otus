@@ -18,7 +18,7 @@
     shell: |
       nmcli connection add type team ifname team0
       nmcli con mod team-team0 ipv4.addresses 192.168.255.2/24
-      nmcli con mod team0 ipv4.gateway 192.168.255.1
+      nmcli con mod team-team0 ipv4.gateway 192.168.255.1
       nmcli con mod team-team0 ipv4.method manual
       nmcli con mod team-team0 ifname team0 config '{"runner": {"name": "loadbalance", "active": true}}'
       nmcli con add type ethernet con-name Team0-port1 ifname eth1 master team0
