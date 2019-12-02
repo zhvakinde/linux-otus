@@ -1,0 +1,52 @@
+---
+- hosts: inetrouter
+  become: yes
+  tasks:
+  - name: Конфигурируем и включаем бондинг на inetrouter
+    shell: |
+      nmcli connection add type team ifname team0
+      nmcli con mod team-team0 ipv4.addresses 192.168.255.1/24
+      nmcli con mod team-team0 ipv4.method manual
+      nmcli con mod team-team0 ifname team0 config '{"runner": {"name": "loadbalance", "active": true}}'
+      nmcli con add type ethernet con-name Team0-port1 ifname eth1 master team0
+      nmcli con add type team-slave con-name Team0-port2 ifname eth2 master team0
+      nmcli connection up id team-team0
+- hosts: centralrouter
+  become: yes
+  tasks:
+  - name: Конфигурируем и включаем бондинг и vlan на centralrouter
+    shell: |
+      nmcli connection add type team ifname team0
+      nmcli con mod team-team0 ipv4.addresses 192.168.255.2/24
+      nmcli con mod team-team0 ipv4.method manual
+      nmcli con mod team-team0 ifname team0 config '{"runner": {"name": "loadbalance", "active": true}}'
+      nmcli con add type ethernet con-name Team0-port1 ifname eth1 master team0
+      nmcli con add type team-slave con-name Team0-port2 ifname eth2 master team0
+      nmcli connection up id team-team0
+      nmcli con add type vlan ifname VLAN100 dev eth3 id 100 ip4 10.10.10.100/24
+      nmcli con add type vlan ifname VLAN101 dev eth3 id 101 ip4 10.10.10.101/24
+- hosts: testserver1
+  become: yes
+  tasks:
+  - name: Включаем vlan на testserver1
+    shell: |
+      nmcli con add type vlan ifname VLAN100 dev eth1 id 100 ip4 10.10.10.254/24
+      
+- hosts: testserver2
+  become: yes
+  tasks:
+  - name: Включаем vlan на testserver2
+    shell: |
+      nmcli con add type vlan ifname VLAN101 dev eth1 id 101 ip4 10.10.10.254/24
+- hosts: testclient1
+  become: yes
+  tasks:
+  - name: Включаем vlan на testclient1
+    shell: |
+      nmcli con add type vlan ifname VLAN100 dev eth1 id 100 ip4 10.10.10.1/24
+- hosts: testclient2
+  become: yes
+  tasks:
+  - name: Включаем vlan на testserver1 testclient2
+    shell: |
+      nmcli con add type vlan ifname VLAN101 dev eth1 id 101 ip4 10.10.10.1/24
