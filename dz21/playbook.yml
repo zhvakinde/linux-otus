@@ -14,7 +14,7 @@
   - name: set iptables masquerade on inetRouter
     command: iptables -t nat -A POSTROUTING ! -d 192.168.255.0/24 -o eth0 -j MASQUERADE 
   - name: set iptables masquerade on inetRouter 2
-    command: iptables -t nat -A POSTROUTING ! -d 10.10.10.0/24-o eth0 -j MASQUERADE
+    command: iptables -t nat -A POSTROUTING ! -d 10.10.10.0/24 -o eth0 -j MASQUERADE
   - name: set forwarding ip
     sysctl:
       name: net.ipv4.ip_forward
