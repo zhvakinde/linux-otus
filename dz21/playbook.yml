@@ -30,23 +30,23 @@
   tasks:
   - name: Включаем vlan на testserver1
     shell: |
-      nmcli con add type vlan ifname VLAN100 dev eth1 id 100 ip4 10.10.10.254/24
+      nmcli con add type vlan ifname VLAN100 dev eth1 id 100 ip4 10.10.10.254/24 gw4 10.10.10.100
       
 - hosts: testserver2
   become: yes
   tasks:
   - name: Включаем vlan на testserver2
     shell: |
-      nmcli con add type vlan ifname VLAN101 dev eth1 id 101 ip4 10.10.10.254/24
+      nmcli con add type vlan ifname VLAN101 dev eth1 id 101 ip4 10.10.10.254/24 gw4 10.10.10.101
 - hosts: testclient1
   become: yes
   tasks:
   - name: Включаем vlan на testclient1
     shell: |
-      nmcli con add type vlan ifname VLAN100 dev eth1 id 100 ip4 10.10.10.1/24
+      nmcli con add type vlan ifname VLAN100 dev eth1 id 100 ip4 10.10.10.1/24 gw4 10.10.10.100
 - hosts: testclient2
   become: yes
   tasks:
   - name: Включаем vlan на testserver1 testclient2
     shell: |
-      nmcli con add type vlan ifname VLAN101 dev eth1 id 101 ip4 10.10.10.1/24
+      nmcli con add type vlan ifname VLAN101 dev eth1 id 101 ip4 10.10.10.1/24 gw4 10.10.10.101
