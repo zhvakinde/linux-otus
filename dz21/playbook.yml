@@ -56,7 +56,7 @@
   - name: configure vlan 
     shell: |
       nmcli device modify eth0 ipv4.never-default yes
-      nmcli con add type vlan ifname VLAN100 dev eth1 id 101 ip4 10.10.10.254/24 gw4 10.10.10.100
+      nmcli con add type vlan ifname VLAN100 dev eth1 id 100 ip4 10.10.10.254/24 gw4 10.10.10.100
 
       
 - hosts: testserver2
