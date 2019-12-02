@@ -29,13 +29,24 @@
 - hosts: centralrouter
   become: yes
   tasks:
-    - name: set forwarding ip
+  - name: set forwarding ip
     sysctl:
       name: net.ipv4.ip_forward
       value: 1
       sysctl_set: yes
       state: present
       reload: yes
+      name: net.ipv4.conf.all.forwarding
+      value: 1
+      sysctl_set: yes
+      state: present
+      reload: yes
+  - sysctl:
+    name: net.ipv4.conf.all.rp_filter
+    value: 0
+    sysctl_set: yes
+    state: present
+    reload: yes
   - name: configure team connection and vlan in centralrouter
     shell: |
       nmcli device modify eth0 ipv4.never-default yes
