@@ -9,7 +9,20 @@
       sysctl_set: yes
       state: present
       reload: yes
-
+  - name: all disable ipv6
+    sysctl:
+      name: net.ipv6.conf.all.disable_ipv6
+      value: 1
+      sysctl_set: yes
+      state: present
+      reload: yes
+  - name: disable default ipv6
+    sysctl:
+      name: net.ipv6.conf.default.disable_ipv6
+      value: 1
+      sysctl_set: yes
+      state: present
+      reload: yes
   
   - name: configure team connection and vlan in inetrouter
     shell: |
@@ -32,6 +45,21 @@
       sysctl_set: yes
       state: present
       reload: yes
+    - name: all disable ipv6
+    sysctl:
+      name: net.ipv6.conf.all.disable_ipv6
+      value: 1
+      sysctl_set: yes
+      state: present
+      reload: yes
+  - name: disable default ipv6
+    sysctl:
+      name: net.ipv6.conf.default.disable_ipv6
+      value: 1
+      sysctl_set: yes
+      state: present
+      reload: yes
+      
   - name: configure team connection and vlan in centralrouter
     shell: |
       nmcli device modify eth0 ipv4.never-default yes
