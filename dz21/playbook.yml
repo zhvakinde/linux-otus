@@ -88,7 +88,7 @@
       nmcli con up Team0-port1
       nmcli con up Team0-port2
       nmcli con add type vlan ifname VLAN100 dev eth3 id 100 ip4 10.10.10.100/24
-      nmcli con add type vlan ifname VLAN101 dev eth3 id 101 ip4 10.10.10.100/24
+      nmcli con add type vlan ifname VLAN101 dev eth3 id 101 ip4 10.10.10.101/24
   
       
 - hosts: testserver1
