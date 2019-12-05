@@ -24,15 +24,27 @@
       state: present
       reload: yes
   
+  - name: set iptables masquerade on inetRouter
+    command: iptables -t nat -A POSTROUTING ! -d 192.168.255.0/24 -o eth0 -j MASQUERADE 
+  - name: set iptables masquerade on inetRouter 2
+    command: iptables -t nat -A POSTROUTING ! -d 10.10.10.0/24 -o eth0 -j MASQUERADE
+  
+  - name: restart network 
+    service:
+      name: network
+      state: restarted
+  
   - name: configure team connection and vlan in inetrouter
     shell: |
       nmcli connection add type team ifname team0
       nmcli con mod team-team0 ipv4.addresses 192.168.255.1/24
       nmcli con mod team-team0 ipv4.method manual
       nmcli con mod team-team0 ifname team0 config '{"runner": {"name": "loadbalance", "active": true}}'
-      nmcli con add type ethernet con-name Team0-port1 ifname eth1 master team0
+      nmcli con add type team-slave con-name Team0-port1 ifname eth1 master team0
       nmcli con add type team-slave con-name Team0-port2 ifname eth2 master team0
-      nmcli connection up id team-team0
+      nmcli con up Team0-port1
+      nmcli con up Team0-port2
+      nmcli con up id team-team0
       
     
 - hosts: centralrouter
@@ -71,6 +83,8 @@
       nmcli con add type ethernet con-name Team0-port1 ifname eth1 master team0
       nmcli con add type team-slave con-name Team0-port2 ifname eth2 master team0
       nmcli connection up id team-team0
+      nmcli con up Team0-port1
+      nmcli con up Team0-port2
       nmcli con add type vlan ifname VLAN100 dev eth3 id 100 ip4 10.10.10.100/24
   
       
