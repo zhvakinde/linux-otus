@@ -45,7 +45,7 @@
       sysctl_set: yes
       state: present
       reload: yes
-    - name: all disable ipv6
+  - name: all disable ipv6
     sysctl:
       name: net.ipv6.conf.all.disable_ipv6
       value: 1
