@@ -1,11 +1,11 @@
 [ovpn]
-ovpnserver ansible_ssh_host=127.0.0.1 ansible_port=2200
-ovpnclient ansible_ssh_host=127.0.0.1 ansible_port=2201
+ovpnserver 
+ovpnclient 
 
 [tap]
-tap1 ansible_ssh_host=127.0.0.1 ansible_port=2202
-tap2 ansible_ssh_host=127.0.0.1 ansible_port=2203
+tap1 
+tap2 
 
 [tun]
-tun1 ansible_ssh_host=127.0.0.1 ansible_port=2204
-tun2 ansible_ssh_host=127.0.0.1 ansible_port=2205
+tun1 
+tun2 
