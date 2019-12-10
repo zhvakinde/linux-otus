@@ -25,7 +25,7 @@
       reload: yes
 
   - name: set iptables masquerade on inetrouter
-    command: iptables -t nat -A POSTROUTING ! -s 192.168.255.0/24 -o eth0 -j MASQUERADE 
+    command: iptables -t nat -A POSTROUTING ! -o eth0 -j MASQUERADE 
   - name: restart network 
     service:
       name: network
