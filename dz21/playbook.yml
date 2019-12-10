@@ -9,20 +9,6 @@
       sysctl_set: yes
       state: present
       reload: yes
-  - name: all disable ipv6
-    sysctl:
-      name: net.ipv6.conf.all.disable_ipv6
-      value: 1
-      sysctl_set: yes
-      state: present
-      reload: yes
-  - name: disable default ipv6
-    sysctl:
-      name: net.ipv6.conf.default.disable_ipv6
-      value: 1
-      sysctl_set: yes
-      state: present
-      reload: yes
   
   - name: set iptables masquerade on inetRouter
     command: iptables -t nat -A POSTROUTING ! -d 192.168.255.0/24 -o eth0 -j MASQUERADE 
@@ -39,6 +25,7 @@
       nmcli con mod team0 ipv4.addresses 192.168.255.1/24
       nmcli con mod team0 ipv4.method manual
       nmcli con modify team0 +ipv4.routes "10.10.10.0/24 192.168.255.2"
+      nmcli con mod team0 connection.autoconnect yes
       nmcli con mod team0 ifname team0 config '{"runner": {"name": "loadbalance"}, "link_watch": {"name": "ethtool"}}'
       nmcli con add type team-slave con-name Team0-port1 ifname eth1 master team0
       nmcli con add type team-slave con-name Team0-port2 ifname eth2 master team0
@@ -54,22 +41,7 @@
       value: 1
       sysctl_set: yes
       state: present
-      reload: yes
-  - name: all disable ipv6
-    sysctl:
-      name: net.ipv6.conf.all.disable_ipv6
-      value: 1
-      sysctl_set: yes
-      state: present
-      reload: yes
-  - name: disable default ipv6
-    sysctl:
-      name: net.ipv6.conf.default.disable_ipv6
-      value: 1
-      sysctl_set: yes
-      state: present
-      reload: yes
-      
+      reload: yes      
       
   - name: configure team connection and vlan in centralrouter
     shell: |
@@ -78,6 +50,7 @@
       nmcli con mod team0 ipv4.addresses 192.168.255.2/24
       nmcli con mod team0 ipv4.gateway 192.168.255.1
       nmcli con mod team0 ipv4.method manual
+      nmcli con mod team0 connection.autoconnect yes
       nmcli con mod team0 ifname team0 config '{"runner": {"name": "loadbalance"}, "link_watch": {"name": "ethtool"}}'
       nmcli con add type team-slave con-name Team0-port1 ifname eth1 master team0
       nmcli con add type team-slave con-name Team0-port2 ifname eth2 master team0
