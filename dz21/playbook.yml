@@ -28,6 +28,10 @@
     command: iptables -t nat -A POSTROUTING ! -d 192.168.255.0/24 -o eth0 -j MASQUERADE 
   - name: set iptables masquerade on inetRouter 2
     command: iptables -t nat -A POSTROUTING ! -d 10.10.10.0/24 -o eth0 -j MASQUERADE
+  - name: restart network 
+    service:
+      name: network
+      state: restarted
   
   - name: configure team connection and vlan in inetrouter
     shell: |
@@ -40,10 +44,6 @@
       nmcli con add type team-slave con-name Team0-port2 ifname eth2 master team0
       nmcli con up team0
      
-  - name: restart network 
-    service:
-      name: network
-      state: restarted
     
 - hosts: centralrouter
   become: yes
@@ -70,6 +70,7 @@
       state: present
       reload: yes
       
+      
   - name: configure team connection and vlan in centralrouter
     shell: |
       nmcli device modify eth0 ipv4.never-default yes
@@ -83,10 +84,7 @@
       nmcli con up team0
       nmcli con add type vlan ifname VLAN100 dev eth3 id 100 ip4 10.10.10.100/24
       nmcli con add type vlan ifname VLAN101 dev eth3 id 101 ip4 10.10.10.101/24
-  - name: restart network 
-    service:
-      name: network
-      state: restarted
+
       
 - hosts: testserver1
   become: yes
