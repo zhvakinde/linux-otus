@@ -35,7 +35,7 @@
   
   - name: configure team connection and vlan in inetrouter
     shell: |
-      nmcli con add type team con-name team0 ifname team0 config '{"runner": {"name": "lacp"}}' 
+      nmcli con add type team con-name team0 ifname team0 config '{"runner": {"name": "activebackup"}, "link_watch": {"name": "ethtool"}}'
       nmcli con mod team0 ipv4.addresses 192.168.255.1/24
       nmcli con mod team0 ipv4.method manual
       nmcli con modify team0 +ipv4.routes "10.10.10.0/24 192.168.255.2"
@@ -74,7 +74,7 @@
   - name: configure team connection and vlan in centralrouter
     shell: |
       nmcli device modify eth0 ipv4.never-default yes
-      nmcli con add type team con-name team0 ifname team0 config '{"runner": {"name": "lacp"}}' 
+      nmcli con add type team con-name team0 ifname team0 config '{"runner": {"name": "activebackup"}, "link_watch": {"name": "ethtool"}}' 
       nmcli con mod team0 ipv4.addresses 192.168.255.2/24
       nmcli con mod team0 ipv4.gateway 192.168.255.1
       nmcli con mod team0 ipv4.method manual
