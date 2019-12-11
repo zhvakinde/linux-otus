@@ -1,1 +1,38 @@
+---
+- name: install packages
+  yum:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - epel-release
+    - openvpn
+    - policycoreutils-python
 
+- name: Change the openvpn_t server to permissive
+  selinux_permissive:
+    name: openvpn_t
+    permissive: true
+
+- name: Copy static.key
+  copy:
+    src: static.key
+    dest: /etc/openvpn/static.key
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Copy server.conf
+  copy:
+    src: server.conf
+    dest: /etc/openvpn/server/server.conf
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Start openvpn service
+  systemd:
+    state: started
+    name: openvpn-server@server
+    enabled: yes
+    
+...
