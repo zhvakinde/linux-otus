@@ -1,1 +1,10 @@
+---
+- hosts: tap1
+  become: yes
+  roles:
+   - tap1
 
+- hosts: tap2 
+  become: yes
+  roles:
+   - tap2
