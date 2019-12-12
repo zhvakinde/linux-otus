@@ -31,8 +31,7 @@
 
 - name: Start openvpn service
   systemd:
-    state: started
     name: openvpn-server@server
-    enabled: yes
-    
+    enabled: true
+  notify: restart_openvpn  
 ...
