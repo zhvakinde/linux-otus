@@ -31,7 +31,7 @@
 
 - name: Start openvpn service
   systemd:
-    name: openvpn-tap1
+    name: openvpn@server
     enabled: true
   notify: restart_openvpn  
 ...
