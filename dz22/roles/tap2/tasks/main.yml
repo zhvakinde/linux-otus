@@ -23,16 +23,15 @@
 
 - name: Copy server.conf
   copy:
-    src: server.conf
-    dest: /etc/openvpn/server/server.conf
+    src: tap2.conf
+    dest: /etc/openvpn/server/client.conf
     owner: root
     group: root
     mode: '0644'
 
 - name: Start openvpn service
   systemd:
-    state: started
-    name: openvpn-server@server
-    enabled: yes
-    
+    name: openvpn@client
+    enabled: true
+  notify: restart_openvpn 
 ...
