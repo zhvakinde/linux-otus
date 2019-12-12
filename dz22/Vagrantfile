@@ -17,7 +17,7 @@ MACHINES = {
   :tap1 => {
     :box_name => "centos/7",
     :net => [
-      {ip: '1922.168.1.1', adapter: 2, netmask: "255.255.255.0", virtualbox__intnet: "tap-net"},
+      {ip: '192.168.1.1', adapter: 2, netmask: "255.255.255.0", virtualbox__intnet: "tap-net"},
     ]
   },
   :tap2 => {
