@@ -14,7 +14,7 @@
   roles:
    - tun1
 
-- hosts: tap2 
+- hosts: tun2 
   become: yes
   roles:
    - tun2
