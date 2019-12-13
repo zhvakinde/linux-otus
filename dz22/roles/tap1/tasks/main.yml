@@ -1,12 +1,17 @@
 ---
+- name: install epel-release
+  yum:
+    name: 
+      - epel-release
+    state: present
+    
 - name: install packages
   yum:
-    name: "{{ packages }}"
-  vars:
-    packages:
-    - epel-release
-    - openvpn
-    - policycoreutils-python
+    name: 
+      - openvpn
+      - policycoreutils-python
+      - iperf3
+    state: present
 
 - name: Change the openvpn_t server to permissive
   selinux_permissive:
