@@ -18,3 +18,13 @@
   become: yes
   roles:
    - tun2
+
+- hosts: ovpnserver
+  become: yes
+  roles:
+   - ovpnserver
+
+- hosts: ovpnclient 
+  become: yes
+  roles:
+   - ovpnclient
