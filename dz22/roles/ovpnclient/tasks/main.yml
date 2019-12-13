@@ -45,7 +45,7 @@
 - name: Copy client.key
   copy:
     src: client.key
-    dest: /etc/openvpn/client/client.key
+    dest: /etc/openvpn/client.key
     owner: root
     group: root
     mode: '0644'
