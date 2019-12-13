@@ -28,7 +28,7 @@
 
 - name: Copy server.conf
   copy:
-    src: tap1.conf
+    src: server.conf
     dest: /etc/openvpn/server.conf
     owner: root
     group: root
