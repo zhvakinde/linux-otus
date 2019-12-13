@@ -3,6 +3,11 @@
   yum:
     name: 
       - epel-release
+    state: present
+    
+- name: install packages
+  yum:
+    name: 
       - openvpn
       - policycoreutils-python
       - iperf3
