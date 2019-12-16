@@ -27,7 +27,7 @@
         name: nginx
         enabled: true 
     
-   - name: restart nginx service
-     systemd:
-       name: nginx
-       state: restarted
+    - name: restart nginx service
+      systemd:
+        name: nginx
+        state: restarted
