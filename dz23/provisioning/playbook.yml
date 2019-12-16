@@ -18,7 +18,7 @@
 
     - name: Change the nginx_t server to permissive
       selinux_permissive:
-        name: nginx_t
+        name: httpd_t
         permissive: true
   
 
