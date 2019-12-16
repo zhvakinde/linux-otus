@@ -1,28 +1,33 @@
 ---
-- name: install epel-release
-  yum:
-    name: 
-      - epel-release
-    state: present
+- name: NGINX | Install and configure NGINX
+  hosts: web
+  become: true
+  tasks:
+    - name: install epel-release
+      yum:
+        name: 
+        - epel-release
+        state: present
     
-- name: install packages
-  yum:
-    name: 
-      - nginx
-      - policycoreutils-python
-    state: present
+    - name: install packages
+      yum:
+        name: 
+        - nginx
+        - policycoreutils-python
+        state: present
 
-- name: Change the nginx_t server to permissive
-  selinux_permissive:
-    name: nginx_t
-    permissive: true
+    - name: Change the nginx_t server to permissive
+      selinux_permissive:
+        name: nginx_t
+        permissive: true
+  
+
+    - name: Start nginx service
+      systemd:
+        name: nginx
+        enabled: true 
     
-- name: Start nginx service
-  systemd:
-    name: nginx
-    enabled: true 
-    
-- name: restart nginx service
-  systemd:
-    name: nginx
-    state: restarted
+   - name: restart nginx service
+     systemd:
+       name: nginx
+       state: restarted
