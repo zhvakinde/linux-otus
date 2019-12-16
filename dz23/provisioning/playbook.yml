@@ -16,3 +16,13 @@
   selinux_permissive:
     name: nginx_t
     permissive: true
+    
+- name: Start nginx service
+  systemd:
+    name: nginx
+    enabled: true 
+    
+- name: restart nginx service
+  systemd:
+    name: nginx
+    state: restarted
