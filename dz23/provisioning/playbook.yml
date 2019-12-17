@@ -20,6 +20,11 @@
       selinux_permissive:
         name: httpd_t
         permissive: true
+        
+    - name: Copy nginx.conf
+      copy:
+        src: nginx.conf
+        dest: /etc/nginx/nginx.conf
   
 
     - name: Start nginx service
