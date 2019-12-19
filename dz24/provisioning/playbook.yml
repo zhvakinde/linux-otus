@@ -3,8 +3,15 @@
   hosts: mail
   become: true
   tasks:
+    - name: Add records to /etc/hosts
+      lineinfile:
+        path: /etc/hosts
+        state: present
+        line: 192.168.1.20 mail.otus.local
+    
     - name: install postfix
       yum:
         name: 
         - postfix
+        - dovecot
         state: present
