@@ -43,8 +43,8 @@
         owner: vmail
         group: vmail
 
-   - name: ensure Dovecot is started and runs at startup
-     service:
-       name: dovecot
-       state: started
-       enabled: yes
+    - name: ensure Dovecot is started and runs at startup
+      service:
+        name: dovecot
+        state: started
+        enabled: yes
