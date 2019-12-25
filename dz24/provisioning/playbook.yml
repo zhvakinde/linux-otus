@@ -15,3 +15,40 @@
         - postfix
         - dovecot
         state: present
+ - name: install Dovecot
+    yum:
+      name:
+        dovecot
+
+- name: create vmail group
+  group:
+    name: vmail
+    gid: 5000
+
+- name: create vmail user
+  user:
+    name: vmail
+    group: vmail
+    uid: 5000
+    home: /var/mail
+
+- name: set secure permissions and ownership on /etc/dovecot
+  file:
+    path: /etc/dovecot
+    state: directory
+    owner: vmail
+    group: dovecot
+    mode: o-rwx
+
+- name: create /var/mail/vhosts
+  file:
+    path: /var/mail/vhosts
+    state: directory
+    owner: vmail
+    group: vmail
+
+- name: ensure Dovecot is started and runs at startup
+  service:
+    name: dovecot
+    state: started
+      enabled: yes
