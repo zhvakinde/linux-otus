@@ -8,7 +8,8 @@
         path: /etc/hosts
         state: present
         line: 192.168.1.20 mail.otus.local
-    
+        line: 192.168.1.20 otus.local 
+         
     - name: install postfix dovecot
       yum:
         name: 
