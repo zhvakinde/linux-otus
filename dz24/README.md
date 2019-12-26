@@ -11,6 +11,6 @@
 
 _____
 
-![mail1](telnet mail.png)
+![telnet mail](telnet mail.png)
 
-![mail2](client mail.png)
+![client mail](client mail.png)
