@@ -12,13 +12,13 @@
         192.168.1.20 client.local  
   
 
-- hosts: nfsserver
+- hosts: server
   become: True
   roles:
     - server
 
 
-- hosts: nfsclient
+- hosts: client
   become: True
   roles:
     - client
