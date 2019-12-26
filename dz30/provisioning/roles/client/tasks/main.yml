@@ -13,5 +13,5 @@
     path: /mnt/nfs
     src: server.otus.local:/var/nfs
     fstype: nfs
-    opts: noauto,x-systemd.automount,x-systemd.device-timeout=10,timeo=14
+    opts: auto,x-systemd.automount,x-systemd.device-timeout=10,timeo=14
     state: mounted  
