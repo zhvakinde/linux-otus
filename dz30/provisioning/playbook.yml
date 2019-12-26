@@ -15,7 +15,7 @@
       name: firewalld
       enabled: yes
       state: started
-  - name: Add eth1 to enternal zone
+  - name: Add eth1 to internal zone
     firewalld:
       zone: internal
       interface: eth1
