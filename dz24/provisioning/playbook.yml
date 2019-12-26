@@ -57,12 +57,12 @@
         owner: vmail
         group: vmail
   
-   - name: allow auth without ssl
-     lineinfile:
-       path: /etc/dovecot/conf.d/10-auth.conf
-       regexp: '^disable_plaintext_auth ='
-       line: 'disable_plaintext_auth = no'
-       state: present
+    - name: allow auth without ssl
+      lineinfile:
+        path: /etc/dovecot/conf.d/10-auth.conf
+        regexp: '^disable_plaintext_auth ='
+        line: 'disable_plaintext_auth = no'
+        state: present
 
     - name: ensure Dovecot is started and runs at startup
       service:
