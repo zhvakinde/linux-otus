@@ -16,6 +16,7 @@
         name: 
         - postfix
         - dovecot
+        - telnet
         state: present
   
     - name: Copy main.cf
