@@ -14,7 +14,7 @@
   lineinfile:
     path: /etc/exports
     state: present
-    line: /var/nfs/upload(rw,sync,no_root_squash,no_all_squash)
+    line: /var/nfs(rw,sync,no_root_squash,no_all_squash)
     
 - name: restart  rpcbind, nfs-server
   systemd: name="{{ item }}" state=restarted enabled=yes
