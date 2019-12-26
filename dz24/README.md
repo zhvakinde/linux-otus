@@ -7,3 +7,10 @@
 Результат
 1. Полученное письмо со всеми заголовками
 2. Конфиги postfix и dovecot
+
+
+_____
+
+![mail1](telnet mail.png)
+
+![mail2](client mail.png)
