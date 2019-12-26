@@ -1,1 +1,23 @@
-
+---
+- name: install nfs
+  yum:
+    name: nfs-utils
+    state: present
+    
+- name: create nfs share dir
+  file:
+    path: /var/nfs/upload
+    state: directory
+    mode: 0777
+    
+- name: config export dir
+  lineinfile:
+    path: /etc/exports
+    state: present
+    line: /var/nfs/upload(rw,sync,no_root_squash,no_all_squash)
+    
+- name: restart  rpcbind, nfs-server
+  systemd: name="{{ item }}" state=restarted enabled=yes
+  with_items:
+    - rpcbind
+    - nfs-server
