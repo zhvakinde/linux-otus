@@ -1,1 +1,24 @@
 ---
+- hosts: all
+  become: yes
+  gather_facts: no
+  tasks:
+  - name: Add records to /etc/hosts
+    lineinfile:
+      path: /etc/hosts
+      state: present
+      line: |
+        192.168.1.10 server.otus.local
+        192.168.1.20 client.local  
+  
+
+- hosts: nfsserver
+  become: True
+  roles:
+    - server
+
+
+- hosts: nfsclient
+  become: True
+  roles:
+    - client
