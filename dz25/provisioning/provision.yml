@@ -1,12 +1,10 @@
 ---
 - hosts: master
-  name: setup master
-  become: yes
+  become: True
   roles:
     - role: master
 
 - hosts: slave
-  name: setup slave
-  become: yes
+  become: True
   roles:
     - role: slave
