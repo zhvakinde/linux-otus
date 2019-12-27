@@ -9,6 +9,7 @@
   yum: 
     name: 
       - Percona-Server-server-57
+      - MySQL-python
     state: present
     
 - name: Copy mysql configs
