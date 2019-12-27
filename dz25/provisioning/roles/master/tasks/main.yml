@@ -1,1 +1,25 @@
+---
 
+- name: Install percona repository
+  yum: 
+    name: "https://repo.percona.com/yum/percona-release-latest.noarch.rpm"
+    state: present
+    
+- name: Install percona-server
+  yum: 
+    name: 
+      - Percona-Server-server-57
+    state: present
+    
+- name: Copy mysql configs
+  copy: src={{ item }} dest=/etc/my.cnf.d/
+  with_fileglob: "*.cnf"
+  
+- name: restart mysql
+  service:
+    name: mysql
+    state: restarted
+    enabled: yes
+- name: Set temp mysql password
+  shell: grep 'A temporary password is generated' /var/log/mysqld.log | awk '{print $11}' | head -1
+  register: temp_password
