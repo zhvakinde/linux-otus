@@ -21,3 +21,4 @@
 # Проверка
 
 ![master](master)
+![slave](slave)
