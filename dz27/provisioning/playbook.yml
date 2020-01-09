@@ -1,18 +1,30 @@
 ---
-- name: setup master
-  hosts: master
+- hosts: all
+  become: yes
+  gather_facts: no
+  tasks:
+  - name: Add records to /etc/hosts
+    lineinfile:
+      path: /etc/hosts
+      state: present
+      line: |
+        192.168.1.10 master.otus.local
+        192.168.1.20 slave.otus.local 
+        192.168.1.30 backup.otus.local
+
+- hosts: master
   become: True
   roles:
     - master
 
-- name: setup slave
-  hosts: slave
+
+- hosts: slave
   become: True
   roles:
     - slave
 
-- name: setup backup
-  hosts: backup
+
+- hosts: backup
   become: True
   roles:
     - backup
