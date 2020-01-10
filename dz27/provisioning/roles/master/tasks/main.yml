@@ -29,7 +29,7 @@
 
 - name: create slot
   become_user: postgres
-  shell: psql postgres -c "SELECT pg_create_physical_replication_slot('pg_slot_1')"
+  shell: psql postgres -c "SELECT pg_create_physical_replication_slot('standby_slot')"
 
 - name: create streaming user
   become_user: postgres
