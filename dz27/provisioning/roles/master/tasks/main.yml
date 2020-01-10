@@ -28,3 +28,19 @@
 - name: create slot
   become_user: postgres
   shell: psql postgres -c "SELECT pg_create_physical_replication_slot('pg_slot_1')"
+
+- name: create streaming user
+  become_user: postgres
+  shell: psql postgres -c "CREATE USER {{ streaming_username }} WITH REPLICATION PASSWORD '{{ streaming_password }}'"
+
+- name: create barman user
+  become_user: postgres
+  shell: psql postgres -c "CREATE USER {{ barman_username }} WITH SUPERUSER PASSWORD '{{ barman_password }}'"
+
+- name: create barman streaming user
+  become_user: postgres
+  shell: psql postgres -c "CREATE USER {{ barman_streaming_username }} WITH REPLICATION PASSWORD '{{ barman_streaming_password }}'"
+  
+- name: create test database
+  become_user: postgres
+  shell: psql postgres -c "CREATE DATABASE test ;"
