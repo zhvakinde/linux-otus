@@ -14,3 +14,13 @@
   shell: /usr/pgsql-11/bin/postgresql-11-setup initdb
   args:
     creates: /var/lib/pgsql/11/data/postgresql.conf
+
+- name: copy postgresql config files
+  template:
+    src: '{{ item }}'
+    dest: /var/lib/pgsql/11/data
+    mode: 0600
+    owner: postgres
+    group: postgres
+  with_fileglob: files/*
+  notify: restart postgresql
