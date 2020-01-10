@@ -11,7 +11,6 @@
       - barman-cli
     state: present
 
-
 - name: init db
   shell: /usr/pgsql-11/bin/postgresql-11-setup initdb
   args:
@@ -26,6 +25,9 @@
     group: postgres
   with_fileglob: files/*
   notify: restart postgresql
+  
+- name: Force all notified handlers to run at this point
+  meta: flush_handlers
 
 - name: create slot
   become_user: postgres
