@@ -4,10 +4,23 @@
   yum:
     name: https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
     state: present
+    
+- name: download barman repo file
+  get_url:
+    url: https://dl.2ndquadrant.com/default/release/get/11/rpm
+    dest: /tmp/barman-repo.sh
+    mode: 0550
 
-- name: install postgresql server
+- name: install barman repo
+  shell: /tmp/barman-repo.sh
+  args:
+    creates: /etc/yum.repos.d/2ndquadrant-dl-default-release-pg11.repo
+
+- name: install postgresql server barman-cli
   yum:
-    name: postgresql11-server
+    name: 
+      - postgresql11-server
+      - barman-cli
     state: present
 
 - name: init db
