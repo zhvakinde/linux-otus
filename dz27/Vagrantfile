@@ -8,15 +8,15 @@ Vagrant.configure(2) do |config|
   end
   config.vm.define "master" do |master|
     master.vm.network "private_network", ip: "192.168.1.10", virtualbox__intnet: "local"
-    master.vm.hostname = "master.otus.local"
+    master.vm.hostname = "master"
   end
   config.vm.define "slave" do |slave|
     slave.vm.network "private_network", ip: "192.168.1.20", virtualbox__intnet: "local"
-    slave.vm.hostname = "slave.otus.test"
+    slave.vm.hostname = "slave"
   end
   config.vm.define "backup" do |backup|
     backup.vm.network "private_network", ip: "192.168.1.30", virtualbox__intnet: "local"
-    backup.vm.hostname = "backup.otus.test"
+    backup.vm.hostname = "backup"
   end
 
 
