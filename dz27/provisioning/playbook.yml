@@ -8,9 +8,9 @@
       path: /etc/hosts
       state: present
       line: |
-        192.168.1.10 master.otus.local
-        192.168.1.20 slave.otus.local 
-        192.168.1.30 backup.otus.local
+        192.168.1.10 master
+        192.168.1.20 slave
+        192.168.1.30 backup
 
 - hosts: master
   become: True
