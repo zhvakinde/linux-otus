@@ -7,7 +7,7 @@
     
 - name: download barman repo file
   get_url:
-    url: https://dl.2ndquadrant.com/default/release/get/11/rpm
+    url: https://access.2ndquadrant.com/api/repository/dl/default/release/11/rpm
     dest: /tmp/barman-repo.sh
     mode: 0550
 
