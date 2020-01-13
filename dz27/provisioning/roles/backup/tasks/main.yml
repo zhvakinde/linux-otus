@@ -51,5 +51,5 @@
     dest: /etc/barman.d/master.conf
     mode: 0644
     
- - name: create replication slot
-   shell: barman receive-wal --create-slot master
+- name: create replication slot
+  shell: barman receive-wal --create-slot master
