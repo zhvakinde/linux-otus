@@ -45,6 +45,4 @@
   become_user: postgres
   shell: psql postgres -c "CREATE USER {{ barman_streaming_username }} WITH REPLICATION PASSWORD '{{ barman_streaming_password }}'"
   
-- name: create test database
-  become_user: postgres
-  shell: psql postgres -c "CREATE DATABASE test ;"
+
