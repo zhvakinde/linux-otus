@@ -5,22 +5,6 @@
     name: epel-release
     state: present
     
-- name: download barman repo file
-  get_url:
-    url: https://access.2ndquadrant.com/api/repository/dl/default/release/11/rpm
-    dest: /tmp/barman-repo.sh
-    mode: 0550
-
-- name: install barman repo
-  shell: /tmp/barman-repo.sh
-  args:
-    creates: /etc/yum.repos.d/2ndquadrant-dl-default-release-pg11.repo
-
-- name: install barman
-  yum:
-    name: barman
-    state: present
-
 - name: install postgresql repo
   yum:
     name: https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
@@ -30,8 +14,11 @@
   yum:
     name: postgresql11
     state: present
-
-
+    
+- name: install barman
+  yum:
+    name: barman
+    state: present
 
 - name: copy auth for barman
   copy:
