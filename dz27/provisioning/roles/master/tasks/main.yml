@@ -16,6 +16,20 @@
   args:
     creates: /var/lib/pgsql/11/data/postgresql.conf
 
+- name: create ssh dir
+  file:
+    path: "/var/lib/pgsql/.ssh"
+    state: directory
+    owner: postgres
+    group: postgres
+
+- name: copy ssh keys
+  copy: src=files/ssh/{{ item }} dest=/var/lib/pgsql/.ssh/ mode=0600 owner=postgres group=postgres
+  with_items:
+    - id_rsa
+    - id_rsa.pub
+    - config
+
 - name: copy postgresql config files
   template:
     src: '{{ item }}'
