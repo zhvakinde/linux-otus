@@ -27,7 +27,7 @@
       pip:
         name: pip
         extra_args: --upgrade
-    - name: update docker-compose
+    - name: install docker-compose
       pip:
         name: docker-compose
        
