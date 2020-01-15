@@ -11,3 +11,5 @@ PostgreSQL
 ![master](master.png)
 
 ![slave](slave.png)
+
+![backup](backup)
