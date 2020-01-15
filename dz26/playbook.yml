@@ -22,8 +22,8 @@
         state: latest
     - name: update python-pip
       pip:
-        name: python-pip
-        state: latest
+        name: pip
+        extra_args: --upgrade
     - name: update python-pip
       pip:
         name: docker-compose
