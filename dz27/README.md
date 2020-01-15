@@ -8,8 +8,10 @@ PostgreSQL
 
 # Проверка
 
+Проверяем работу репликации
 ![master](master.png)
 
 ![slave](slave.png)
 
+Проверяем работу barman
 ![backup](backup)
