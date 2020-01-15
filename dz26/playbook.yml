@@ -18,8 +18,11 @@
         state: present
     - name: install python-pip
       yum:
-        name: python-pip
-        state: latest
+        name: 
+        - python-pip
+        - python-devel
+        - gcc
+        state: present
     - name: update python-pip
       pip:
         name: pip
