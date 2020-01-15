@@ -3,6 +3,11 @@
   hosts: docker
   become: true
   tasks:
+    
+    - name: Put SELinux in permissive mode
+      selinux:
+        policy: targeted
+        state: permissive
     - name: install docker
       yum:
         name: docker
