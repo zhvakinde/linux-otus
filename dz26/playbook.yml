@@ -30,5 +30,5 @@
     - name: install docker-compose
       pip:
         name: docker-compose
-    - name: run docker-compose
-      command: docker-compose -f /vagrant/docker-compose.yml up
+    #- name: run docker-compose
+    #  command: docker-compose -f /vagrant/docker-compose.yml up
