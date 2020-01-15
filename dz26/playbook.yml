@@ -12,9 +12,9 @@
         name: docker
         state: started
         enabled: yes
-    - name: install epel-relese
+    - name: install epel-release
       yum:
-        name: epel-relese
+        name: epel-release
         state: present
     - name: install python-pip
       yum:
