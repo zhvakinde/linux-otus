@@ -1,1 +1,28 @@
+---
+version: '3.7'
+services:
+  nginx:
+    image: zhvakinde/dz10_addon_nginx:v1
+    ports:
+      - 8081:80
+    volumes:
+      - ./logs:/etc/logs/nginx
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf/
+      - ./php:/var/www:rw
+    links:
+      - fpm
+    networks:
+      - otus_net
 
+  fpm:
+    image: zhvakinde/dz10_addon_php:v1
+    volumes:
+      - ./php:/var/www:rw
+    networks:
+      - otus_net
+
+networks:
+  otus_net:
+    driver: bridge
+
+...
