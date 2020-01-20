@@ -6,8 +6,8 @@ services:
     ports:
       - 80:80
     volumes:
-      - ./logs:/etc/logs/nginx
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf/
+      - ./nginx/log:/var/log/nginx
+      - ./nginx/nginx.conf:/etc/nginx.conf/
       - ./php:/var/www:rw
     links:
       - fpm
