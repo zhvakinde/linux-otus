@@ -2,7 +2,7 @@
 version: '3.7'
 services:
   nginx:
-    image: zhvakinde/dz10_addon_nginx:v1
+    image: nginx:latest
     ports:
       - 8081:80
     volumes:
@@ -15,7 +15,7 @@ services:
       - otus_net
 
   fpm:
-    image: zhvakinde/dz10_addon_php:v1
+    image:
     volumes:
       - ./php:/var/www:rw
     networks:
