@@ -8,7 +8,7 @@ services:
     volumes:
       - ./nginx/log:/var/log/nginx
       - ./nginx/nginx.conf:/etc/nginx.conf/
-      - ./php:/var/www:rw
+      - ./php:/code
     links:
       - fpm
     networks:
@@ -17,7 +17,7 @@ services:
   fpm:
     image: php:fpm
     volumes:
-      - ./php:/var/www:rw
+      - ./php:/code
     networks:
       - otus_net
 
