@@ -11,13 +11,19 @@ services:
       - ./php:/var/www/html:rw
     depends_on:
       - fpm
-
+      - flask
   fpm:
     image: php:7-fpm
     volumes:
       - ./php:/var/www/html
 
-
+  flask:
+    build: ./flask
+    volumes:
+      - ./flask:/app
+    ports:
+      - 5000:5000
+      
 
 
 
