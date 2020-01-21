@@ -10,7 +10,7 @@ services:
       - ./php:/var/www/html:rw
     command: [nginx, '-g', 'daemon off;']
     depends_on:
-            - frm
+      - fpm
 
   fpm:
     image: php:7-fpm
