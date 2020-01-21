@@ -36,8 +36,6 @@
       pip:
         name: docker-compose
         
-   # - name: update python
-   #   yum: python*
-   #     state: latest
-   # - name: run docker-compose
+
+    # - name: run docker-compose
     #  command: docker-compose -f /vagrant/docker-compose.yml up -d
