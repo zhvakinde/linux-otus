@@ -9,6 +9,7 @@ services:
       - ./nginx/log:/var/log/nginx
       - ./nginx/nginx.conf:/etc/nginx.conf/
       - ./php:/code
+    command: [nginx, '-g', 'daemon off;']
     links:
       - fpm
     networks:
