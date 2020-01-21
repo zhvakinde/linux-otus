@@ -6,9 +6,8 @@ services:
     ports:
       - 80:80
     volumes:
-      - ./nginx/log:/var/log/nginx
-      - ./nginx/nginx.conf:/etc/nginx.conf/
-      - ./php:/code
+      - ./nginx/nginx.conf:/etc/nginx.conf/:ro
+      - ./php:/var/www/html:rw
     command: [nginx, '-g', 'daemon off;']
     links:
       - fpm
@@ -18,13 +17,14 @@ services:
   fpm:
     image: php:fpm
     volumes:
-      - ./php:/code
-    command: ["php-frm", "./index.php"]
+      - ./php:/var/www/html
+
     networks:
       - otus_net
 
 networks:
   otus_net:
+
 
 
 ...
