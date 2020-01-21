@@ -15,7 +15,7 @@ services:
       - otus_net
 
   fpm:
-    image: php:fpm
+    image: php:7-fpm
     volumes:
       - ./php:/var/www/html
 
