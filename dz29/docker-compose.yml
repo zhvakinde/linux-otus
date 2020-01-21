@@ -19,7 +19,7 @@ services:
     image: php:fpm
     volumes:
       - ./php:/code
-    command: [ "php", "./index.php" ]
+    command: ["php", "./index.php"]
     networks:
       - otus_net
 
