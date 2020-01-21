@@ -6,6 +6,7 @@ services:
     ports:
       - 80:80
     volumes:
+      - ./logs:/etc/logs/nginx
       - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf:ro
       - ./php:/var/www/html:rw
     depends_on:
