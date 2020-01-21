@@ -9,21 +9,15 @@ services:
       - ./nginx/nginx.conf:/etc/nginx.conf/:ro
       - ./php:/var/www/html:rw
     command: [nginx, '-g', 'daemon off;']
-    links:
-      - fpm
-    networks:
-      - otus_net
+    depends_on:
+            - frm
 
   fpm:
     image: php:7-fpm
     volumes:
       - ./php:/var/www/html
 
-    networks:
-      - otus_net
 
-networks:
-  otus_net:
 
 
 
