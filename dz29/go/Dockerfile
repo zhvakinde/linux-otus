@@ -1,4 +1,4 @@
-FROM iron/go:dev
+FROM goland:latest
 WORKDIR /app
 COPY myapp.go /app
 RUN go build -o myapp
