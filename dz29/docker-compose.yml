@@ -15,12 +15,10 @@ services:
       - go
   fpm:
     image: php:7-fpm
-    volumes:
-      - ./php:/var/www/html
   ruby:
     build: ./ruby
-    ports:
-      - 9001:9001
+  go:
+    buld: ./go
 
 
       
