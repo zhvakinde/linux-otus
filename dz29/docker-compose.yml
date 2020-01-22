@@ -18,7 +18,7 @@ services:
   ruby:
     build: ./ruby
   go:
-    buld: ./go
+    build: ./go
 
 
       
