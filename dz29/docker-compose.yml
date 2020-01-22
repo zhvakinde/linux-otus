@@ -14,19 +14,19 @@ services:
       - ruby
       - go
     networks:
-      - otus-net
+      - otus_net
   fpm:
     image: php:7-fpm
     networks:
-      - otus-net
+      - otus_net
   ruby:
     build: ./ruby
     networks:
-      - otus-net
+      - otus_net
   go:
     build: ./go
     networks:
-      - otus-net
+      - otus_net
       
 networks:
   otus-net:
