@@ -9,4 +9,4 @@ RUN bundle install --quiet
 
 EXPOSE 9001
 
-CMD ["bundle", "exec", "rackup", "--host", "0.0.0.0", "-p", "9002"]
+CMD ["bundle", "exec", "rackup", "--host", "0.0.0.0", "-p", "9001"]
