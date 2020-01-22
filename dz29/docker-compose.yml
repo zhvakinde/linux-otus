@@ -11,18 +11,19 @@ services:
       - ./php:/var/www/html:rw
     depends_on:
       - fpm
-      - flask
+      - ruby
+      - go
   fpm:
     image: php:7-fpm
     volumes:
       - ./php:/var/www/html
-
-  flask:
-    build: ./flask
-    volumes:
-      - ./flask:/app
+  ruby:
+    image: ruby:latest
     ports:
-      - 5000:5000
+      - 9001:9001
+    volumes:
+      - ./ruby:
+
       
 
 
