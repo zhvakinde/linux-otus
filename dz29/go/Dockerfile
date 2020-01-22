@@ -1,8 +1,9 @@
 FROM golang:latest
-RUN mkdir /app
-WORKDIR /app
+WORKDIR /go/src/app
 COPY myapp.go /app
-RUN go build -o main /app/myapp.go
-CMD ["/app/main"]
+RUN ls
+
+CMD ["/go/src/myapp.go"]
+
 
 
