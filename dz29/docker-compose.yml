@@ -18,11 +18,10 @@ services:
     volumes:
       - ./php:/var/www/html
   ruby:
-    image: ruby:latest
+    build: ./ruby
     ports:
       - 9001:9001
-    volumes:
-      - ./ruby:/app
+
 
       
 
