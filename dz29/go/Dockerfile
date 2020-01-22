@@ -1,7 +1,8 @@
-FROM golang:onbuild
+FROM golang:latest
 RUN mkdir /app
 WORKDIR /app
 COPY myapp.go /app
-RUN  go build -o myapp.go
-CMD ["/app/myapp.go"]
+RUN go get -d -v
+ENTRYPOINT ["./myapp"]
+
 
