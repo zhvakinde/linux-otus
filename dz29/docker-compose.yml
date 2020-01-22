@@ -29,7 +29,7 @@ services:
       - otus_net
       
 networks:
-  otus-net:
+  otus_net:
 
 
       
