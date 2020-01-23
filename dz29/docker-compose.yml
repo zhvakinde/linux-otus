@@ -17,6 +17,8 @@ services:
       - otus_net
   fpm:
     image: php:7-fpm
+    volumes:
+      - ./php:/var/www:rw
     networks:
       - otus_net
   ruby:
@@ -30,7 +32,7 @@ services:
       
 networks:
   otus_net:
-  driver: bridge
+  
 
       
 
