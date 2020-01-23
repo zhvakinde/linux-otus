@@ -9,7 +9,7 @@ services:
       - ./logs:/etc/logs/nginx
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - ./php:/var/www/html:rw
-    depends_on:
+    links:
       - fpm
       - ruby
       - go
@@ -30,7 +30,7 @@ services:
       
 networks:
   otus_net:
-
+  driver: bridge
 
       
 
