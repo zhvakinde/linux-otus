@@ -18,7 +18,7 @@ services:
   fpm:
     image: php:7-fpm
     volumes:
-      - ./php:/var/www:rw
+      - ./php:/var/www/html:rw
     networks:
       - otus_net
   ruby:
