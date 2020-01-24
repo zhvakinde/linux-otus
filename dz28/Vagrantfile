@@ -7,20 +7,20 @@ Vagrant.configure(2) do |config|
     v.memory = 1024
   end
   config.vm.define "consul" do |consul|
-    master.vm.network "private_network", ip: "192.168.1.10", virtualbox__intnet: "local"
-    master.vm.hostname = "consul"
+    consul.vm.network "private_network", ip: "192.168.1.10", virtualbox__intnet: "local"
+    consul.vm.hostname = "consul"
   end
   config.vm.define "pg1" do |pg1|
-    slave.vm.network "private_network", ip: "192.168.1.21", virtualbox__intnet: "local"
-    slave.vm.hostname = "pg1"
+    pg1.vm.network "private_network", ip: "192.168.1.21", virtualbox__intnet: "local"
+    pg1.vm.hostname = "pg1"
   end
   config.vm.define "pg2" do |pg2|
-    backup.vm.network "private_network", ip: "192.168.1.22", virtualbox__intnet: "local"
-    backup.vm.hostname = "pg2"
+    pg2.vm.network "private_network", ip: "192.168.1.22", virtualbox__intnet: "local"
+    pg2.vm.hostname = "pg2"
   end
   config.vm.define "pg3" do |pg3|
-    backup.vm.network "private_network", ip: "192.168.1.23", virtualbox__intnet: "local"
-    backup.vm.hostname = "pg3"
+    pg3.vm.network "private_network", ip: "192.168.1.23", virtualbox__intnet: "local"
+    pg3.vm.hostname = "pg3"
   end
 
   config.vm.provision "ansible" do |ansible|
