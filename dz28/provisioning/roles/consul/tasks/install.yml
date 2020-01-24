@@ -30,5 +30,5 @@
   with_items:
       - /etc/consul.d          
       - /opt/consul
-   tags:
-     - dirs
+  tags:
+    - dirs
