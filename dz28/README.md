@@ -92,7 +92,8 @@ postgres=# \l
 ```
 
 Проверка switchover:
-```console[root@pg1 vagrant]#  patronictl list otus
+```console
+[root@pg1 vagrant]#  patronictl list otus
 +---------+--------+--------------+--------+---------+----+-----------+
 | Cluster | Member |     Host     |  Role  |  State  | TL | Lag in MB |
 +---------+--------+--------------+--------+---------+----+-----------+
@@ -119,4 +120,45 @@ Are you sure you want to switchover cluster otus, demoting current master pg2? [
 |   otus  |  pg2   | 192.168.1.22 |        | stopped |    |   unknown |
 |   otus  |  pg3   | 192.168.1.23 |        | running |  2 |       0.0 |
 +---------+--------+--------------+--------+---------+----+-----------+
+```
+
+Проверка (Поменять конфигурацию PostgreSQL + с параметром требующим перезагрузки)
+```console
+[root@pg1 vagrant]# patronictl edit-config otus
+--- 
++++ 
+@@ -9,7 +9,7 @@
+     archive_mode: 'on'
+     max_connections: 100
+     max_parallel_workers: 8
+-    max_wal_senders: 5
++    max_wal_senders: 10
+     max_wal_size: 2GB
+     min_wal_size: 1GB
+   use_pg_rewind: true
+
+Apply these changes? [y/N]: y
+Configuration changed
+[root@pg1 vagrant]# patronictl list otus
++---------+--------+--------------+--------+---------+----+-----------+-----------------+
+| Cluster | Member |     Host     |  Role  |  State  | TL | Lag in MB | Pending restart |
++---------+--------+--------------+--------+---------+----+-----------+-----------------+
+|   otus  |  pg1   | 192.168.1.21 | Leader | running |  3 |           |        *        |
+|   otus  |  pg2   | 192.168.1.22 |        | running |  3 |       0.0 |        *        |
+|   otus  |  pg3   | 192.168.1.23 |        | running |  3 |       0.0 |        *        |
++---------+--------+--------------+--------+---------+----+-----------+-----------------+
+[root@pg1 vagrant]# patronictl restart otus
++---------+--------+--------------+--------+---------+----+-----------+-----------------+
+| Cluster | Member |     Host     |  Role  |  State  | TL | Lag in MB | Pending restart |
++---------+--------+--------------+--------+---------+----+-----------+-----------------+
+|   otus  |  pg1   | 192.168.1.21 | Leader | running |  3 |           |        *        |
+|   otus  |  pg2   | 192.168.1.22 |        | running |  3 |       0.0 |        *        |
+|   otus  |  pg3   | 192.168.1.23 |        | running |  3 |       0.0 |        *        |
++---------+--------+--------------+--------+---------+----+-----------+-----------------+
+When should the restart take place (e.g. 2020-01-29T15:29)  [now]: 
+Are you sure you want to restart members pg2, pg3, pg1? [y/N]: y
+Restart if the PostgreSQL version is less than provided (e.g. 9.5.2)  []: 
+Success: restart on member pg2
+Success: restart on member pg3
+Success: restart on member pg1
 ```
